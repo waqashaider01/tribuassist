@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Slideshow\Image;
 
 use App\Models\SlideshowImage;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Item extends Component
@@ -45,9 +46,20 @@ class Item extends Component
         $this->image->save();
     }
 
+    public function delete()
+    {
+        Storage::delete($this->image->path);
+        $this->image->delete();
+
+        $this->emit('refreshImageComponent');
+
+        return back();
+    }
+
     public function render()
     {
-        $is_thumbnail = SlideshowImage::find($this->image->id)->is_thumbnail;
+        $image = SlideshowImage::find($this->image->id);
+        $is_thumbnail = $image ? $image->is_thumbnail : null;
         return view('livewire.slideshow.image.item', compact('is_thumbnail'));
     }
 }

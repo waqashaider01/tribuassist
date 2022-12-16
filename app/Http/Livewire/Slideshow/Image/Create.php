@@ -10,13 +10,19 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $image;
+    public $images = [];
 
     public function uploadImage()
     {
-        SlideshowImage::create([
-            'path' => $this->image->store('slideshow/images'),
+        $this->validate([
+            'images.*' => 'image|max:1024', // 1MB Max
         ]);
+
+        foreach ($this->images as $image) {
+            SlideshowImage::create([
+                'path' => $image->store('slideshow/images'),
+            ]);
+        }
 
         $this->emitUp('refreshComponent');
     }
