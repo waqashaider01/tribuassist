@@ -18,7 +18,7 @@ class Create extends Component
             'path' => $this->image->store('slideshow/images'),
         ]);
 
-        $this->emitUp('refreshSelf');
+        $this->emitUp('refreshComponent');
     }
 
     public function render()

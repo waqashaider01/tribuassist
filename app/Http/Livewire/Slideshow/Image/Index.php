@@ -7,11 +7,11 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    protected $listeners = ['refreshSelf' => '$refresh'];
+    protected $listeners = ['refreshImageComponent' => '$refresh'];
 
     public function render()
     {
-        $images = SlideshowImage::get();
+        $images = SlideshowImage::select('id', 'is_thumbnail', 'path', 'comment')->get();
         return view('livewire.slideshow.image.index', compact('images'));
     }
 }

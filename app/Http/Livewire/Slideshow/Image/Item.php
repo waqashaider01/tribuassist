@@ -2,16 +2,41 @@
 
 namespace App\Http\Livewire\Slideshow\Image;
 
+use App\Models\SlideshowImage;
 use Livewire\Component;
 
 class Item extends Component
 {
+    public $image;
     public $comment;
+
+    protected $listeners = ['refreshImageItems' => '$refresh'];
 
     public function mount($image)
     {
         $this->image = $image;
         $this->comment = $image->comment;
+    }
+
+    public function setAsThumbnail()
+    {
+        $thumbnail = !$this->image->is_thumbnail;
+        if ($thumbnail) {
+            $images = SlideshowImage::where('slideshow_id', $this->image->slideshow_id)
+                ->whereNot('id', $this->image->id)
+                ->select('id', 'is_thumbnail')
+                ->get();
+
+            foreach ($images as $image) {
+                $image->is_thumbnail = false;
+                $image->save();
+            }
+        }
+
+        $this->image->is_thumbnail = $thumbnail;
+        $this->image->save();
+
+        $this->emit('refreshImageItems');
     }
 
     public function updatedComment()
@@ -22,6 +47,7 @@ class Item extends Component
 
     public function render()
     {
-        return view('livewire.slideshow.image.item');
+        $is_thumbnail = SlideshowImage::find($this->image->id)->is_thumbnail;
+        return view('livewire.slideshow.image.item', compact('is_thumbnail'));
     }
 }
