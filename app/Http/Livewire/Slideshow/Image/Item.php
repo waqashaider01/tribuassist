@@ -10,13 +10,15 @@ class Item extends Component
 {
     public $image;
     public $comment;
+    public $serial_number;
 
     protected $listeners = ['refreshImageItems' => '$refresh'];
 
-    public function mount($image)
+    public function mount($image, $serial_number)
     {
         $this->image = $image;
         $this->comment = $image->comment;
+        $this->serial_number = $serial_number;
     }
 
     public function setAsThumbnail()

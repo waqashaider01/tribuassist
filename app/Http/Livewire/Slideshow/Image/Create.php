@@ -24,7 +24,8 @@ class Create extends Component
             ]);
         }
 
-        $this->emitUp('refreshComponent');
+        $this->reset();
+        $this->emitUp('refreshImageComponent');
     }
 
     public function render()
