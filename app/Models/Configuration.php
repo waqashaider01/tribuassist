@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Configuration extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['tribuassist_media_limit'];
 }

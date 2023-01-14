@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->boolean('active_state')->default(true);
+            $table->foreignId('state_id');
+            $table->string('name');
             $table->timestamps();
         });
     }

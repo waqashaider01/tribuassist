@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->boolean('paypal_active')->default(true);
-            $table->string('paypal_client');
+            $table->string('tribuassist_media_limit')->nullable();
             $table->timestamps();
         });
     }

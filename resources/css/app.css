@@ -103,3 +103,33 @@ td {
         #46c8b4 98.26%
     );
 }
+
+/* Select2 */
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding: 0 !important;
+}
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-40%);
+}
+
+.select2-selection__rendered {
+    @apply leading-normal;
+}
+.select2-container--default .select2-selection--single {
+    border: none !important;
+    border-radius: 0.375rem !important /* 6px */;
+}
+.select2-container .select2-selection--single {
+    height: 44px !important;
+    @apply px-3 py-2 mt-1 block shadow-sm sm:text-sm rounded-xl;
+    --tw-bg-opacity: 1;
+    background-color: rgb(248 250 252 / var(--tw-bg-opacity)) !important;
+    border-radius: 0.75rem !important;
+}
+.select2-selection__arrow {
+    height: 45px !important;
+}

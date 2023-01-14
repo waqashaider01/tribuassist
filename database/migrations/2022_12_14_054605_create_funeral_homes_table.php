@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('funeral_homes', function (Blueprint $table) {
             $table->id();
             $table->boolean('active_state')->default(true);
+            $table->foreignId('user_id');
             $table->string('name');
+            $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('website')->nullable();
-            $table->string('full_address')->nullable();
             $table->text('services')->nullable();
-            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
