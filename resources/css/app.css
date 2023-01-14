@@ -1,3 +1,105 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.bg-accent {
+    @apply bg-[#111E43] text-white;
+}
+
+.text-accent {
+    @apply text-[#111E43];
+}
+
+/* Authentication */
+.auth-input-label {
+    @apply text-white font-thin mb-1;
+}
+.auth-input {
+    @apply rounded-md px-3 py-2 placeholder:text-stone-300 placeholder:font-thin focus:ring-4 focus:ring-white;
+}
+.auth-button {
+    @apply bg-[#003465] text-white w-full px-8 py-2 rounded-xl focus:ring-2 focus:ring-white;
+}
+
+/* Sidebar */
+.sidebar {
+    @apply hidden md:flex md:flex-col fixed top-0 left-0 md:static z-10 flex-shrink-0 h-screen w-3/4 md:w-1/5 bg-[#111E43];
+}
+.sidebar-link,
+.sidebar-link-active {
+    @apply flex items-center gap-4 px-4 py-3 text-white hover:bg-white hover:text-[#111E43] rounded-md duration-300;
+}
+.sidebar-link-active {
+    @apply bg-white text-[#111E43] font-semibold;
+}
+
+/* Header */
+.header-dropdown-link {
+    @apply w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white;
+}
+
+/* Table */
+.table-header {
+    @apply bg-stone-100 border-y-2 border-stone-300;
+}
+th {
+    @apply px-6 py-4 text-stone-600 text-left text-sm font-normal tracking-wider;
+}
+td {
+    @apply px-6 py-4 text-stone-600 font-normal whitespace-nowrap;
+}
+
+/* Form */
+.form-label {
+    @apply block text-sm font-light text-gray-500;
+}
+.input-field {
+    @apply px-3 py-2 mt-1 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md;
+}
+
+/* Button */
+.button {
+    @apply flex justify-center items-center px-4 text-white;
+    background-image: linear-gradient(
+        45deg,
+        #590f87 0,
+        #ff0076 50%,
+        #590f87 100%
+    );
+    background-size: 210% 210%;
+    transition: all 300ms;
+}
+.button:hover {
+    background-position: 100%;
+}
+
+.transparent-button {
+    @apply flex justify-center items-center bg-transparent relative overflow-hidden z-10;
+}
+.transparent-button::after {
+    content: "";
+    position: absolute;
+    inset: 10% 35% 10% 35%;
+    background-image: linear-gradient(to left, #590f87 0, #ff0076 100%);
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+    @apply rounded-full -z-10;
+}
+.transparent-button:hover::after {
+    inset: 0;
+    opacity: 1;
+}
+
+/* Navbar */
+.profile-photo-circle {
+    background: linear-gradient(
+        100deg,
+        #ff4b9a 0%,
+        #ad61ff 46.58%,
+        #46c8b4 98.26%
+    );
+}

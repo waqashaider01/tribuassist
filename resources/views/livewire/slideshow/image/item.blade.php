@@ -1,7 +1,7 @@
 <div class="rounded-xl overflow-hidden border {{$is_thumbnail ? 'border-2 border-green-600' : ''}} p-4">
     <div class="flex justify-between items-center mb-6">
         <div wire:click="setAsThumbnail"
-            class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden ring-2 {{$is_thumbnail ? 'bg-green-600 ring-green-600' : 'bg-stone-100 ring-stone-100'}} ring-offset-2 transition duration-300 cursor-pointer">
+            class="flex-shrink-0 flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden ring-2 {{$is_thumbnail ? 'bg-green-600 ring-green-600' : 'bg-stone-100 ring-stone-100'}} ring-offset-2 transition duration-300 cursor-pointer">
             @if(!$is_thumbnail)
             <span title="Set as thumbnail">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -51,9 +51,7 @@
         <img class="w-full aspect-square rounded-xl overflow-hidden" src="{{asset('storage/'.$image->path)}}">
     </a>
 
-    <div>
-        <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Large
-            input</label>
+    <div class="mt-3">
         <input wire:model.debounce.500ms="comment" type="text" id="large-input" placeholder="Comment"
             class="block p-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 text-center">
     </div>
