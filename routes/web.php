@@ -45,6 +45,10 @@ use App\Http\Livewire\Client\Tributes\Index as Tributes;
 |
 */
 
+Route::get('tributes/manage/{tribute}', function () {
+    echo 'Tribute manage';
+})->name('ui.tribute.manage');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

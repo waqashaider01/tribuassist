@@ -13,11 +13,17 @@ class Index extends Component
     public $keyword;
     public $qty = 12;
 
+    public function updated()
+    {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $tributes = Tribute::when($this->keyword, function ($query, $keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%');
-            })
+            $query->where('first_name', 'like', '%' . $keyword . '%')
+                ->orwhere('last_name', 'like', '%' . $keyword . '%');
+        })
             ->latest()
             ->paginate($this->qty);
 
