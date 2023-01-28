@@ -20,7 +20,6 @@ class Create extends Component
     public $dod;
     public $contact_name;
     public $contact_email;
-    public $password;
 
     public function save()
     {

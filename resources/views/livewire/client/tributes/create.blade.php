@@ -52,13 +52,6 @@
                         wire:model.defer="contact_email" autocomplete="contact_email" required />
                     <x-jet-input-error for="contact_email" class="mt-2" />
                 </div>
-
-                <div class="col-span-3">
-                    <x-jet-label for="password" value="{{ __('Tribute Password') }}" />
-                    <x-jet-input id="password" type="text" class="mt-1 block w-full" wire:model.defer="password"
-                        autocomplete="password" required />
-                    <x-jet-input-error for="password" class="mt-2" />
-                </div>
             </x-slot>
 
             <x-slot name="actions">
