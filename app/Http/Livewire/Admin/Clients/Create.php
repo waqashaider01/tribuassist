@@ -20,10 +20,10 @@ class Create extends Component
     public $last_name;
 
     // Funeral Home
-    public $doing_business_as;
+    public $funeral_home_name;
     public $street;
-    public $city;
-    public $state;
+    public $city_id;
+    public $state_id;
     public $zip;
     public $phone;
     public $email;
@@ -31,9 +31,9 @@ class Create extends Component
     public $website;
     public $services;
 
-    public function updatedState()
+    public function updatedStateId()
     {
-        $this->cities = City::where('state_id', $this->state)
+        $this->cities = City::where('state_id', $this->state_id)
             ->where('active_state', true)
             ->get();
     }
@@ -48,17 +48,17 @@ class Create extends Component
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
                 'email' => $this->email,
+                'phone' => $this->phone,
                 'password' => Hash::make('abcd1234'),
             ]);
 
             // Creating Funeral Home
-            FuneralHome::create([
-                'id' => rand(000001, 999999),
+            $client = FuneralHome::create([
                 'user_id' => $user->id,
-                'doing_business_as' => $this->doing_business_as,
+                'name' => $this->funeral_home_name,
                 'street' => $this->street,
-                'city' => $this->city,
-                'state' => $this->state,
+                'city_id' => $this->city_id,
+                'state_id' => $this->state_id,
                 'zip' => $this->zip,
                 'phone' => $this->phone,
                 'email' => $this->email,
@@ -68,6 +68,8 @@ class Create extends Component
             ]);
 
             DB::commit();
+
+            return redirect()->route('clients.show', $client->id);
         } catch (Exception $exception) {
             DB::rollBack();
             dd($exception->getMessage());

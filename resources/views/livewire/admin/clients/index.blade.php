@@ -35,22 +35,22 @@
     </div>
 
     <div class="w-full overflow-auto bg-white">
-        <div class="px-6 py-8 text-xl font-semibold">Serial Numbers</div>
+        {{-- <div class="px-6 py-8 text-xl font-semibold">Funeral Homes</div> --}}
 
         <div class="w-full overflow-auto">
             <table class="w-full text-left">
                 <thead class="w-full">
                     <tr class="table-header">
                         <th scope="col">Name</th>
-                        <th scope="col">Active State</th>
-                        <th scope="col">Created On</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col" class="text-center">Active State</th>
+                        <th scope="col" class="text-center">Total Tributes</th>
+                        <th scope="col" class="text-end">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody class="bg-white divide-y divide-stone-200">
                     @foreach ($clients as $client)
-                    @livewire('pages.clients.item', ['category' => $client], key($client->id))
+                    @livewire('admin.clients.item', ['client' => $client], key($client->id))
                     @endforeach
                 </tbody>
             </table>

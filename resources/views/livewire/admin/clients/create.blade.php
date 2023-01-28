@@ -4,97 +4,97 @@
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <x-jet-form-section submit="save">
             <x-slot name="title">
-                {{ __('Tribute settings') }}
+                {{ __('Funeral Home') }}
             </x-slot>
 
             <x-slot name="description">
-                {{ __('Define how much files can be uploaded under a tribute.') }}
+                {{ __('System will create a new user account and a funeral home by using these data.') }}
             </x-slot>
 
             <x-slot name="form">
                 <div class="col-span-3">
                     <x-jet-label for="first_name" value="{{ __('First Name') }}" />
                     <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="first_name"
-                        autocomplete="first_name" />
+                        autocomplete="first_name" required />
                     <x-jet-input-error for="first_name" class="mt-2" />
                 </div>
                 <div class="col-span-3">
                     <x-jet-label for="last_name" value="{{ __('Last Name') }}" />
                     <x-jet-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="last_name"
-                        autocomplete="last_name" />
+                        autocomplete="last_name" required />
                     <x-jet-input-error for="last_name" class="mt-2" />
                 </div>
 
                 <div class="col-span-3">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input id="email" type="text" class="mt-1 block w-full" wire:model.defer="email"
-                        autocomplete="email" />
+                    <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="email"
+                        autocomplete="email" required />
                     <x-jet-input-error for="email" class="mt-2" />
                 </div>
                 <div class="col-span-3">
                     <x-jet-label for="phone" value="{{ __('Phone') }}" />
                     <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="phone"
-                        autocomplete="phone" />
+                        autocomplete="phone" required />
                     <x-jet-input-error for="phone" class="mt-2" />
-                </div>
-                {{-- --}}
-                <div class="col-span-6">
-                    <x-jet-label for="street" value="{{ __('Street') }}" />
-                    <x-jet-input id="street" type="text" class="mt-1 block w-full" wire:model.defer="street"
-                        autocomplete="street" />
-                    <x-jet-input-error for="street" class="mt-2" />
                 </div>
 
                 <div class="col-span-3">
-                    <x-jet-label for="doing_business_as" value="{{ __('DBA') }}" />
-                    <x-jet-input id="doing_business_as" type="text" class="mt-1 block w-full"
-                        wire:model.defer="doing_business_as" autocomplete="doing_business_as" />
-                    <x-jet-input-error for="doing_business_as" class="mt-2" />
+                    <x-jet-label for="funeral_home_name" value="{{ __('Funeral Home Name') }}" />
+                    <x-jet-input id="funeral_home_name" type="text" class="mt-1 block w-full"
+                        wire:model.defer="funeral_home_name" autocomplete="funeral_home_name" required />
+                    <x-jet-input-error for="funeral_home_name" class="mt-2" />
+                </div>
+
+                <div class="col-span-3">
+                    <x-jet-label for="website" value="{{ __('Website') }}" />
+                    <x-jet-input id="website" type="text" class="mt-1 block w-full" wire:model.defer="website"
+                        autocomplete="website" required />
+                    <x-jet-input-error for="website" class="mt-2" />
+                </div>
+
+                <div class="col-span-3">
+                    <x-jet-label for="street" value="{{ __('Street') }}" />
+                    <x-jet-input id="street" type="text" class="mt-1 block w-full" wire:model.defer="street"
+                        autocomplete="street" required />
+                    <x-jet-input-error for="street" class="mt-2" />
                 </div>
 
                 <div class="col-span-3">
                     <x-jet-label for="zip" value="{{ __('ZIP') }}" />
                     <x-jet-input id="zip" type="text" class="mt-1 block w-full" wire:model.defer="zip"
-                        autocomplete="zip" />
+                        autocomplete="zip" required />
                     <x-jet-input-error for="zip" class="mt-2" />
                 </div>
 
                 <div wire:ignore class="col-span-3">
                     <x-jet-label for="state" value="{{ __('State') }}" />
-                    <select id="state" class="mt-1 block w-full" wire:model.defer="state">
+                    <select id="state" class="mt-1 block w-full" wire:model.defer="state_id" required>
                         <option value="">{{__('Select State')}}</option>
                         @foreach($states as $state)
                         <option value="{{$state->id}}">{{$state->name}}</option>
                         @endforeach
                     </select>
-                    <x-jet-input-error for="state" class="mt-2" />
+                    <x-jet-input-error for="state_id" class="mt-2" />
                 </div>
 
                 <div class="col-span-3">
                     <x-jet-label for="city" value="{{ __('City') }}" />
                     <select id="city"
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                        wire:model.defer="city">
+                        wire:model.defer="city_id" required>
                         <option value="">{{__('Select City')}}</option>
                         @foreach($cities as $city)
                         <option value="{{$city->id}}">{{$city->name}}</option>
                         @endforeach
                     </select>
-                    <x-jet-input-error for="city" class="mt-2" />
+                    <x-jet-input-error for="city_id" class="mt-2" />
                 </div>
 
                 <div class="col-span-3">
                     <x-jet-label for="notification_email" value="{{ __('Notification Email') }}" />
-                    <x-jet-input id="notification_email" type="text" class="mt-1 block w-full"
-                        wire:model.defer="notification_email" autocomplete="notification_email" />
+                    <x-jet-input id="notification_email" type="email" class="mt-1 block w-full"
+                        wire:model.defer="notification_email" autocomplete="notification_email" required />
                     <x-jet-input-error for="notification_email" class="mt-2" />
-                </div>
-
-                <div class="col-span-3">
-                    <x-jet-label for="website" value="{{ __('Notification Email') }}" />
-                    <x-jet-input id="website" type="text" class="mt-1 block w-full" wire:model.defer="website"
-                        autocomplete="website" />
-                    <x-jet-input-error for="website" class="mt-2" />
                 </div>
 
                 <div class="col-span-6">
@@ -102,7 +102,7 @@
                     <textarea id="services" type="text" wire:model.defer="services"
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
                         autocomplete="services" placeholder="Seperate by comma (,)"></textarea>
-                    <x-jet-input-error for="services" class="mt-2" />
+                    <x-jet-input-error for="services" class="mt-2" required />
                 </div>
             </x-slot>
 
@@ -130,7 +130,7 @@
             $('#state').select2();
             $('#state').on('change', function (e) {
                 var data = $('#state').select2('val');
-                @this.set('state', data);
+                @this.set('state_id', data);
             });
 
             // $('#city').select2();

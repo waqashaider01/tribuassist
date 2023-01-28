@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Clients;
+namespace App\Http\Livewire\Client\Tributes;
 
-use App\Models\FuneralHome;
+use App\Models\Tribute;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,13 +15,12 @@ class Index extends Component
 
     public function render()
     {
-        $clients = FuneralHome::withCount('tributes')
-            ->when($this->keyword, function ($query, $keyword) {
+        $tributes = Tribute::when($this->keyword, function ($query, $keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             })
             ->latest()
             ->paginate($this->qty);
 
-        return view('livewire.admin.clients.index', compact('clients'))->layout('layouts.admin');
+        return view('livewire.client.tributes.index', compact('tributes'))->layout('layouts.client');
     }
 }

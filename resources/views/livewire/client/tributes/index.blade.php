@@ -1,6 +1,18 @@
-@section('page_name', 'Users')
+@section('page_name', 'Tributes')
 
 <div class="min-h-[79vh] p-6 flex flex-col gap-6">
+    <div class="flex items-end gap-2">
+        <a href="{{route('tributes.create')}}"
+            class="flex items-center gap-2 h-12 w-fit px-4 border border-blue-900 rounded-xl bg-white text-blue-900">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+            </svg>
+            Create
+        </a>
+    </div>
+
     <div class="flex gap-2 md:gap-4">
         <div class="w-full flex items-center bg-white rounded-md border">
             <div class="p-4 pr-0">
@@ -23,28 +35,24 @@
     </div>
 
     <div class="w-full overflow-auto bg-white">
-        {{-- <div class="px-6 py-8 text-xl font-semibold">Users</div> --}}
-
         <div class="w-full overflow-auto">
             <table class="w-full text-left">
                 <thead class="w-full">
                     <tr class="table-header">
                         <th scope="col">Name</th>
-                        <th scope="col" class="text-center">Active State</th>
-                        <th scope="col">Funeral Home</th>
                         <th scope="col" class="text-end">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody class="bg-white divide-y divide-stone-200">
-                    @foreach ($users as $user)
-                    @livewire('admin.users.item', ['user' => $user], key($user->id))
+                    @foreach ($tributes as $tribute)
+                    @livewire('client.tributes.item', ['tribute' => $tribute], key($tribute->id))
                     @endforeach
                 </tbody>
             </table>
 
-            @if($users && $users->links())
-            {{ $users->links() }}
+            @if($tributes && $tributes->links())
+            {{ $tributes->links() }}
             @endif
         </div>
     </div>

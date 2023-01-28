@@ -1,18 +1,17 @@
-@section('page_name', 'Users: Edit')
+@section('page_name', 'Tributes: Edit')
 
 <article>
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <x-jet-form-section submit="save">
             <x-slot name="title">
-                {{ __('User') }}
+                {{ __('Tributes') }}
             </x-slot>
 
             <x-slot name="description">
-                {{ __('Here you can modify user data.') }}
+                {{ __('Here you can only modify funeral home data.') }}
             </x-slot>
 
             <x-slot name="form">
-
                 <div class="col-span-3">
                     <x-jet-label for="first_name" value="{{ __('First Name') }}" />
                     <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="first_name"
@@ -27,16 +26,38 @@
                 </div>
 
                 <div class="col-span-3">
-                    <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="email"
-                        autocomplete="email" required />
-                    <x-jet-input-error for="email" class="mt-2" />
+                    <x-jet-label for="dob" value="{{ __('Date of Birth') }}" />
+                    <x-jet-input id="dob" type="date" class="mt-1 block w-full" wire:model.defer="dob"
+                        autocomplete="dob" required />
+                    <x-jet-input-error for="dob" class="mt-2" />
                 </div>
+
                 <div class="col-span-3">
-                    <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                    <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="phone"
-                        autocomplete="phone" required />
-                    <x-jet-input-error for="phone" class="mt-2" />
+                    <x-jet-label for="dod" value="{{ __('Date of Death') }}" />
+                    <x-jet-input id="dod" type="date" class="mt-1 block w-full" wire:model.defer="dod"
+                        autocomplete="dod" required />
+                    <x-jet-input-error for="dod" class="mt-2" />
+                </div>
+
+                <div class="col-span-3">
+                    <x-jet-label for="contact_name" value="{{ __('Contact Name') }}" />
+                    <x-jet-input id="contact_name" type="text" class="mt-1 block w-full" wire:model.defer="contact_name"
+                        autocomplete="contact_name" required />
+                    <x-jet-input-error for="contact_name" class="mt-2" />
+                </div>
+
+                <div class="col-span-3">
+                    <x-jet-label for="contact_email" value="{{ __('Contact Email') }}" />
+                    <x-jet-input id="contact_email" type="text" class="mt-1 block w-full"
+                        wire:model.defer="contact_email" autocomplete="contact_email" required />
+                    <x-jet-input-error for="contact_email" class="mt-2" />
+                </div>
+
+                <div class="col-span-3">
+                    <x-jet-label for="password" value="{{ __('Tribute Password') }}" />
+                    <x-jet-input id="password" type="text" class="mt-1 block w-full" wire:model.defer="password"
+                        autocomplete="password" required />
+                    <x-jet-input-error for="password" class="mt-2" />
                 </div>
             </x-slot>
 

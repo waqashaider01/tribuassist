@@ -1,12 +1,17 @@
 <tr class="">
     <td>
-        <a href="{{route('clients.show', $client->id)}}">{{$client->name}}</a>
+        <a href="{{route('samples.show', $sample->id)}}">
+            {{$sample->title}}
+        </a>
     </td>
-    <td class="text-center">{{$client->active_state ? "Active" : "Inactive"}}</td>
-    <td class="text-center">{{$client->tributes_count}}</td>
+    <td>
+        {{$sample->type == 1 ? 'Video Style' : ''}}
+        {{$sample->type == 2 ? 'Tribute Theme' : ''}}
+        {{$sample->type == 3 ? 'Background Music' : ''}}
+    </td>
     <td>
         <div class="flex justify-end items-center gap-2">
-            <a href="{{route('clients.show', $client->id)}}"
+            <a href="{{route('samples.show', $sample->id)}}"
                 class="text-blue-900 bg-stone-100 hover:text-white hover:bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
@@ -16,7 +21,7 @@
                 </svg>
             </a>
 
-            <a href="{{route('clients.edit', $client->id)}}"
+            <a href="{{route('samples.edit', $sample->id)}}"
                 class="text-blue-900 bg-stone-100 hover:text-white hover:bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">

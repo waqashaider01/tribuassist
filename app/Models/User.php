@@ -56,4 +56,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function funeral_home()
+    {
+        return $this->hasOne(FuneralHome::class);
+    }
 }
