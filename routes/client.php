@@ -9,6 +9,7 @@ use App\Http\Livewire\Slideshow\Image\Edit as ImageEdit;
 use App\Http\Livewire\Client\Tributes\Create as TributesCreate;
 use App\Http\Livewire\Client\Tributes\Edit as TributesEdit;
 use App\Http\Livewire\Client\Tributes\Show as TributesShow;
+use App\Http\Livewire\Client\Tributes\Slideshow as TributesSlideshow;
 use App\Http\Livewire\Client\Tributes\Index as Tributes;
 
 /*
@@ -40,9 +41,9 @@ Route::middleware([
             Route::get('create', TributesCreate::class)->name('.create');
             Route::get('{tribute}', TributesShow::class)->name('.show');
             Route::get('{tribute}/edit', TributesEdit::class)->name('.edit');
+            Route::get('{tribute}/slideshow', TributesSlideshow::class)->name('.slideshow');
         });
 });
-
 
 Route::middleware([
     'auth:sanctum',
@@ -61,6 +62,3 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
-
-require __DIR__ . '/client.php';
-require __DIR__ . '/admin.php';
