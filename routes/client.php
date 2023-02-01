@@ -9,7 +9,6 @@ use App\Http\Livewire\Slideshow\Image\Edit as ImageEdit;
 use App\Http\Livewire\Client\Tributes\Create as TributesCreate;
 use App\Http\Livewire\Client\Tributes\Edit as TributesEdit;
 use App\Http\Livewire\Client\Tributes\Show as TributesShow;
-use App\Http\Livewire\Client\Tributes\Slideshow as TributesSlideshow;
 use App\Http\Livewire\Client\Tributes\Index as Tributes;
 
 /*
@@ -22,10 +21,6 @@ use App\Http\Livewire\Client\Tributes\Index as Tributes;
 | contains the 'web' middleware group. Now create something great!
 |
 */
-
-Route::get('tributes/manage/{tribute}', function () {
-    echo 'Tribute manage';
-})->name('ui.tribute.manage');
 
 Route::middleware([
     'auth:sanctum',
@@ -41,7 +36,6 @@ Route::middleware([
             Route::get('create', TributesCreate::class)->name('.create');
             Route::get('{tribute}', TributesShow::class)->name('.show');
             Route::get('{tribute}/edit', TributesEdit::class)->name('.edit');
-            Route::get('{tribute}/slideshow', TributesSlideshow::class)->name('.slideshow');
         });
 });
 

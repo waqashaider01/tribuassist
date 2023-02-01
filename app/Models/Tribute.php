@@ -10,4 +10,9 @@ class Tribute extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function funeralHome()
+    {
+        return $this->belongsTo(FuneralHome::class);
+    }
 }

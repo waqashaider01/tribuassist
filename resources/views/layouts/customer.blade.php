@@ -23,26 +23,9 @@
 </head>
 
 <body>
-    <article class="h-screen w-screen flex overflow-hidden">
-        @livewire('layout.sidebar')
-
-        <main class="h-screen w-full overflow-y-auto flex flex-col justify-between bg-slate-100">
-            @livewire('layout.header')
-
-            <div class="flex items-center gap-2 md:hidden py-3 px-6 bg-white border-b">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                </svg>
-                <h1 class="text-xl font-light">@yield('page_name')</h1>
-            </div>
-
-            <div class="h-full overflow-auto">
-                {{ $slot }}
-            </div>
-        </main>
-    </article>
+    <main class="h-screen w-full overflow-y-auto flex flex-col justify-between bg-slate-100">
+        @yield('content')
+    </main>
 
     @stack('modals')
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>

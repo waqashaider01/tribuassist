@@ -3,8 +3,7 @@
 
     <div class="grid grid-cols-4 gap-4">
         @foreach ($images as $image)
-        @livewire('slideshow.image.item', ['image' => $image, 'serial_number' => $loop->index + 1], key('image-' .
-        $image->id))
+        @livewire('slideshow.image.item', ['image' => $image], key('image-' . $image->id))
         @endforeach
     </div>
 </div>

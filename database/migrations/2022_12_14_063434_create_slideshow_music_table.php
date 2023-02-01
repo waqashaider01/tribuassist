@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('slideshow_music', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('slideshow_id');
+            $table->foreignId('tribute_id');
             $table->tinyInteger('selection_number');
             $table->string('path');
             $table->timestamps();

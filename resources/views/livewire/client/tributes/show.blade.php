@@ -1,3 +1,5 @@
+@section('page_name', 'Tribute: Details')
+
 <div class="bg-white p-8">
     <table class="w-full border">
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
@@ -28,7 +30,7 @@
             <th>Actions</th>
             <td>
                 <div class="flex items-center gap-2">
-                    <button id="shareButton{{$tribute->id}}" value="{{route('ui.tribute.manage', $tribute->id)}}"
+                    <button id="shareButton{{$tribute->id}}" value="{{route('ui.slideshow.edit', $tribute->id)}}"
                         class="text-blue-900 bg-stone-100 hover:text-white hover:bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">

@@ -23,9 +23,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <input type="number"
-                class="flex justify-center items-center gap-1 h-8 w-20 rounded-xl overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer"
-                value="{{$serial_number}}" min="1">
+            <input wire:model.lazy="serial_number" type="text"
+                class="flex justify-center items-center gap-1 h-8 w-12 rounded-xl overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer"
+                min="1">
 
             <a href="{{route('slideshow.image.edit', $image->id)}}"
                 class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer">
@@ -52,7 +52,7 @@
     </a>
 
     <div class="mt-3">
-        <input wire:model.debounce.500ms="comment" type="text" id="large-input" placeholder="Comment"
+        <input wire:model.lazy="comment" type="text" id="large-input" placeholder="Comment"
             class="block p-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 text-center">
     </div>
 </div>

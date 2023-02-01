@@ -14,18 +14,19 @@ class Item extends Component
 
     protected $listeners = ['refreshImageItems' => '$refresh'];
 
-    public function mount($image, $serial_number)
+    public function mount($image)
     {
         $this->image = $image;
+        $this->serial_number = $image->serial_number;
         $this->comment = $image->comment;
-        $this->serial_number = $serial_number;
     }
 
     public function setAsThumbnail()
     {
         $thumbnail = !$this->image->is_thumbnail;
+
         if ($thumbnail) {
-            $images = SlideshowImage::where('slideshow_id', $this->image->slideshow_id)
+            $images = SlideshowImage::where('tribute_id', $this->image->tribute_id)
                 ->whereNot('id', $this->image->id)
                 ->select('id', 'is_thumbnail')
                 ->get();
@@ -46,6 +47,37 @@ class Item extends Component
     {
         $this->image->comment = $this->comment;
         $this->image->save();
+    }
+
+    public function updatedSerialNumber()
+    {
+        $images = SlideshowImage::where('tribute_id', $this->image->tribute_id)->get();
+        $imagesCount = $images->count();
+
+        if ($this->serial_number > 0 && $this->serial_number <= $imagesCount) {
+            if ($this->serial_number > $this->image->serial_number) {
+                $images = SlideshowImage::where('serial_number', '<=', $this->serial_number)
+                    ->select('id', 'serial_number')
+                    ->get();
+                foreach ($images as $image) {
+                    $image->serial_number -= 1;
+                    $image->save();
+                }
+            } else {
+                $images = SlideshowImage::where('serial_number', '<', $this->image->serial_number)
+                    ->select('id', 'serial_number')
+                    ->get();
+                foreach ($images as $image) {
+                    $image->serial_number += 1;
+                    $image->save();
+                }
+            }
+
+            $this->image->serial_number = $this->serial_number;
+            $this->image->save();
+        }
+
+        $this->emit('refreshImageComponent');
     }
 
     public function delete()
