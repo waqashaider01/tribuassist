@@ -22,6 +22,7 @@
                         <option value="1">{{__('Slideshow Style')}}</option>
                         <option value="2">{{__('Tribute Theme')}}</option>
                         <option value="3">{{__('Background Music')}}</option>
+                        <option value="4">{{__('DVD Package Theme')}}</option>
                     </select>
                     <x-jet-input-error for="type" class="mt-2" />
                 </div>
@@ -33,17 +34,24 @@
                     <x-jet-input-error for="title" class="mt-2" />
                 </div>
 
-                @if($type != 3)
+                @if($type == 1 || $type == 2)
                 <div class="col-span-3">
                     <x-jet-label for="file" value="{{ __('Video File') }}" />
                     <x-jet-input id="file" type="file" accept="video/*" class="mt-1 block p-2 w-full border"
                         wire:model.defer="file" autocomplete="file" required />
                     <x-jet-input-error for="file" class="mt-2" />
                 </div>
-                @else
+                @elseif($type == 3)
                 <div class="col-span-3">
                     <x-jet-label for="file" value="{{ __('Audio File') }}" />
                     <x-jet-input id="file" type="file" accept=".mp3, .wma" class="mt-1 block p-2 w-full border"
+                        wire:model.defer="file" autocomplete="file" required />
+                    <x-jet-input-error for="file" class="mt-2" />
+                </div>
+                @elseif($type == 4)
+                <div class="col-span-3">
+                    <x-jet-label for="file" value="{{ __('Image File') }}" />
+                    <x-jet-input id="file" type="file" accept="image/*" class="mt-1 block p-2 w-full border"
                         wire:model.defer="file" autocomplete="file" required />
                     <x-jet-input-error for="file" class="mt-2" />
                 </div>

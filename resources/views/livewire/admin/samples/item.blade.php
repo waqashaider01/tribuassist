@@ -8,6 +8,7 @@
         {{$sample->type == 1 ? 'Video Style' : ''}}
         {{$sample->type == 2 ? 'Tribute Theme' : ''}}
         {{$sample->type == 3 ? 'Background Music' : ''}}
+        {{$sample->type == 4 ? 'DVD Package Theme' : ''}}
     </td>
     <td>
         <div class="flex justify-end items-center gap-2">

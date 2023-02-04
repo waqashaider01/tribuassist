@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('slideshow_samples', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->default(1); //1:video, 2:ilm, 3:music, 4:dvd_cover
+            $table->tinyInteger('type')->default(1); //1:style, 2:theme, 3:music, 4:package_theme
             $table->string('title');
             $table->string('path')->nullable();
             $table->timestamps();

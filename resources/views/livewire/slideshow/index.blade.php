@@ -20,6 +20,7 @@
                 </div>
             </div>
 
+            @livewire('slideshow.preferences', ['tribute' => $tribute])
             @livewire('slideshow.media-management', ['tribute' => $tribute])
         </div>
     </div>
