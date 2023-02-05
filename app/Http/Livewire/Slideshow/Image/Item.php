@@ -28,14 +28,27 @@ class Item extends Component
         if ($thumbnail) {
             $images = SlideshowImage::where('tribute_id', $this->image->tribute_id)
                 ->whereNot('id', $this->image->id)
-                ->select('id', 'is_thumbnail')
+                ->select('id', 'is_thumbnail', 'path', 'comment')
                 ->get();
 
             foreach ($images as $image) {
+                // Read existing data
+                $txtFilePath = explode('.', $image->path)[0] . '.txt';
+                $contents = Storage::get($txtFilePath);
+                $contents = "" . "\n" . $image->comment;
+                Storage::put($txtFilePath, $contents);
+
+                // Updating databse record
                 $image->is_thumbnail = false;
                 $image->save();
             }
         }
+
+        // Read existing data
+        $txtFilePath = explode('.', $this->image->path)[0] . '.txt';
+        $contents = Storage::get($txtFilePath);
+        $contents = "thumb" . "\n" . $this->image->comment;
+        Storage::put($txtFilePath, $contents);
 
         $this->image->is_thumbnail = $thumbnail;
         $this->image->save();
@@ -45,6 +58,26 @@ class Item extends Component
 
     public function updatedComment()
     {
+        // Read existing data
+        $txtFilePath = explode('.', $this->image->path)[0] . '.txt';
+        $contents = Storage::get($txtFilePath);
+
+        // First line
+        $first_line = strtok($contents, "\n");
+
+        // After first line
+        strtok($contents, "\n");
+        $after_first_line = strtok("\n");
+
+        if ($first_line == 'thumb') {
+            $contents = $first_line . "\n" . $this->comment;
+            // $contents = str_replace("Hello World!", "Hello Laravel!", $contents);
+        } else {
+            $contents = "" . "\n" . $this->comment;
+        }
+
+        Storage::put($txtFilePath, $contents);
+
         $this->image->comment = $this->comment;
         $this->image->save();
     }
@@ -82,7 +115,13 @@ class Item extends Component
 
     public function delete()
     {
+        // Delete image file
         Storage::delete($this->image->path);
+
+        // Delete .txt file
+        Storage::delete(explode('.', $this->image->path)[0] . '.txt');
+
+        // Delete database record
         $this->image->delete();
 
         $this->emit('refreshImageComponent');
