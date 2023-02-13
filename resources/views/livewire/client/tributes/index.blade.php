@@ -29,6 +29,14 @@
                 class="w-full border-none focus:ring-0">
         </div>
 
+        <div class="flex-shrink-0 flex items-center bg-white rounded-md border">
+            <select wire:model.lazy="is_ready" class="w-full border-none focus:ring-0">
+                <option value="">All</option>
+                <option value="1">Ready</option>
+                <option value="0">Not Ready</option>
+            </select>
+        </div>
+
         <div class="flex items-center bg-white rounded-md border">
             <input wire:model.lazy="qty" type="number" min="1" class="w-full border-none focus:ring-0">
         </div>
@@ -51,9 +59,11 @@
                 </tbody>
             </table>
 
-            @if($tributes && $tributes->links())
-            {{ $tributes->links() }}
-            @endif
+            <div class="p-4">
+                @if($tributes && $tributes->links())
+                {{ $tributes->links() }}
+                @endif
+            </div>
         </div>
     </div>
 </div>

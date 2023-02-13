@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class Edit extends Component
 {
+    public $image;
+
     public function mount(SlideshowImage $image)
     {
         $this->image = $image;
@@ -14,6 +16,6 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.slideshow.image.edit');
+        return view('livewire.slideshow.image.edit')->extends('layouts.customer');
     }
 }

@@ -19,6 +19,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 {{-- @livewire('slideshow.media-management') --}}
+
+                <form action="{{route('image-cropper')}}" method="post" enctype="multipart/form-data"
+                    class="flex flex-col items-center">
+                    @csrf
+                    <input type="file" name="image">
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
     </div>

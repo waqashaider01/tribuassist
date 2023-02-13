@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\SlideshowImage;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class ImageController extends Controller
 {
@@ -49,5 +49,19 @@ class ImageController extends Controller
         } else {
             return false;
         }
+    }
+
+    function cropImage(Request $request)
+    {
+        $boundary = uniqid();
+        $headers = [
+            'Content-Type' => "multipart/form-data; boundary={$boundary}"
+        ];
+
+        $imageFile = $request->file('image');
+        $response = Http::attach('file', $imageFile->getRealPath(), $imageFile->getClientOriginalName())
+            ->post('http://154.53.57.37');
+
+        return $response->body();
     }
 }

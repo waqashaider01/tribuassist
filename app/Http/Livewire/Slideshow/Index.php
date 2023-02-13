@@ -46,6 +46,12 @@ class Index extends Component
         return back();
     }
 
+    public function submit()
+    {
+        $this->tribute->is_ready = true;
+        $this->tribute->save();
+    }
+
     public function render()
     {
         return view('livewire.slideshow.index')

@@ -3,8 +3,6 @@
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Livewire\Slideshow\Image\Edit as ImageEdit;
-
 // Tributes
 use App\Http\Livewire\Client\Tributes\Create as TributesCreate;
 use App\Http\Livewire\Client\Tributes\Edit as TributesEdit;
@@ -47,10 +45,6 @@ Route::middleware([
     Route::get('/', function () {
         return view('welcome');
     })->name('welcome');
-
-    // Slideshow
-    Route::get('slideshow/image/{image}', ImageEdit::class)->name('slideshow.image.edit');
-    Route::post('slideshow/image/save', [ImageController::class, 'save'])->name('slideshow.image.save');
 
     Route::get('/dashboard', function () {
         return view('dashboard');

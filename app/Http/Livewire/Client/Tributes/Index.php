@@ -11,6 +11,7 @@ class Index extends Component
     use WithPagination;
 
     public $keyword;
+    public $is_ready = 1;
     public $qty = 12;
 
     public function updated()
@@ -24,6 +25,9 @@ class Index extends Component
             $query->where('first_name', 'like', '%' . $keyword . '%')
                 ->orwhere('last_name', 'like', '%' . $keyword . '%');
         })
+            ->when($this->is_ready != '', function ($query) {
+                $query->where('is_ready', $this->is_ready);
+            })
             ->latest()
             ->paginate($this->qty);
 

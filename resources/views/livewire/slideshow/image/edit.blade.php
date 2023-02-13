@@ -30,7 +30,7 @@
             })
             .then(function ({data}) {
                 if(data.success){
-                    window.location.href = '/';
+                    window.location.href = '/slideshow/edit';
                 }
                 console.log(data.success);
             })

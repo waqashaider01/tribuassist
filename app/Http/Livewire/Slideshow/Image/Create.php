@@ -23,24 +23,22 @@ class Create extends Component
     public function uploadImage()
     {
         $this->validate([
-            // 'images.*' => 'image|max:1024', // 1MB Max
             'images.*' => 'image',
         ]);
 
-        $images = SlideshowImage::where('tribute_id', $this->tribute->id)->get();
-        $imagesCount = $images->count();
+        $imagesCount = SlideshowImage::where('tribute_id', $this->tribute->id)->count();
 
         foreach ($this->images as $image) {
             // Image numeric name
             if ($imagesCount) {
-                $newNumber = $imagesCount + 1;
+                $newNumber = $imagesCount;
                 $availablePrefix = 3 - strlen($newNumber);
                 for ($i = 0; $i < $availablePrefix; $i++) {
                     $newNumber = '0' . $newNumber;
                 }
                 $imageNumericName = $newNumber;
             } else {
-                $imageNumericName = '001';
+                $imageNumericName = '002';
             }
 
             // Image extension
@@ -48,15 +46,10 @@ class Create extends Component
 
             SlideshowImage::create([
                 'tribute_id' => $this->tribute->id,
-                'is_thumbnail' => !$imagesCount ? true : false,
+                'is_thumbnail' => false,
                 'serial_number' => $imagesCount + 1,
                 'path' => $image->storeAs('slideshows/images/' . $this->tribute->id, $imageNumericName  . '.' . $imageExtension),
             ]);
-
-            // Making .txt file
-            $filePath = 'slideshows/images/' . $this->tribute->id . '/' . $imageNumericName . '.txt';
-            $isThumbnail = !$imagesCount ? 'thumb' : '';
-            Storage::put($filePath, $isThumbnail);
 
             $imagesCount += 1;
         }

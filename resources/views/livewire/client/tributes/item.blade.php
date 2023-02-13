@@ -7,6 +7,7 @@
 
     <td>
         <div class="flex justify-end items-center gap-2">
+
             <a href="{{route('tributes.show', $tribute->id)}}"
                 class="text-blue-900 bg-stone-100 hover:text-white hover:bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

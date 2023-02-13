@@ -15,4 +15,14 @@ class Tribute extends Model
     {
         return $this->belongsTo(FuneralHome::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(SlideshowImage::class);
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }
