@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Slideshow;
 
+use App\Models\SlideshowMusic;
 use App\Models\SlideshowPreference;
 use App\Models\SlideshowSample;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Preferences extends Component
 {
+    use WithFileUploads;
+
     public $tribute;
 
     public $styles;
@@ -25,6 +29,14 @@ class Preferences extends Component
     public $music4_id;
     public $music5_id;
     public $package_theme_id;
+
+    public $music1;
+    public $music2;
+    public $music3;
+    public $music4;
+    public $music5;
+
+    protected $listeners = ['refreshSelf' => '$refresh'];
 
     public function mount($tribute)
     {
@@ -131,6 +143,27 @@ class Preferences extends Component
         );
 
         return redirect()->route('ui.slideshow.edit');
+    }
+
+    public function uploadMusic($tabName)
+    {
+        $file = $this->$tabName;
+
+        if ($this->$tabName) {
+            SlideshowMusic::create([
+                'tribute_id' => $this->tribute->id,
+                'selection_number' => str_replace('music', '', $tabName),
+                'path' => $file->store('slideshows/musics/' . $this->tribute->id)
+            ]);
+
+            $this->emitSelf('refreshSelf');
+            // return redirect()->route('ui.slideshow.edit');
+        }
+    }
+
+    public function removeMusic($id)
+    {
+        SlideshowMusic::find($id)->delete();
     }
     // End: Music
 

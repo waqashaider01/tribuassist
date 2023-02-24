@@ -48,9 +48,9 @@
                         </svg>
                     </a>
 
-                    @if(!$tribute->order)
+                    {{-- @if($tribute->status == 1)
                     <button wire:click="processOrder"
-                        class="flex ic gap-2 text-white bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
+                        class="flex items-center gap-2 text-white bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -59,9 +59,9 @@
 
                         Process Order
                     </button>
-                    @endif
+                    @endif --}}
 
-                    @if($tribute->order && $tribute->order->completed == 0)
+                    @if($tribute->status != 0)
                     <button wire:click="downloadTxt" title="Download .txt file"
                         class="text-blue-900 bg-stone-100 hover:text-white hover:bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -81,9 +81,11 @@
                                 d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm5.5-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9v1H8v1h1v1H8v1h1v1H7.5V5h-1V4h1V3h-1V2h1V1z" />
                         </svg>
                     </button>
+                    @endif
 
+                    @if($tribute->status == 1)
                     <button wire:click="markAsCompleted"
-                        class="flex ic gap-2 text-white bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
+                        class="flex items-center gap-2 text-white bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />

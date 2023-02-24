@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(FuneralHome::class);
     }
+
+    public function subscription_status()
+    {
+        return $this->funeral_home->subscription_status();
+    }
 }

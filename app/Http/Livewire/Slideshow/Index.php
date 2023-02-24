@@ -48,7 +48,7 @@ class Index extends Component
 
     public function submit()
     {
-        $this->tribute->is_ready = true;
+        $this->tribute->status = 1;
         $this->tribute->save();
     }
 

@@ -5,9 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Configuration extends Model
+class Subscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tribute_media_limit'];
+    protected $guarded = [];
+
+    public function client()
+    {
+        return $this->hasOne(User::class);
+    }
 }

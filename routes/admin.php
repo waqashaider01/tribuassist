@@ -11,14 +11,11 @@ use App\Http\Livewire\Admin\Samples\Edit as SamplesEdit;
 use App\Http\Livewire\Admin\Samples\Show as SamplesShow;
 use App\Http\Livewire\Admin\Samples\Index as Samples;
 
-use App\Http\Livewire\Admin\Orders\Index as Orders;
-use App\Http\Livewire\Admin\Orders\Show as OrdersShow;
-
-// Clients
-use App\Http\Livewire\Admin\Clients\Create as ClientsCreate;
-use App\Http\Livewire\Admin\Clients\Edit as ClientsEdit;
-use App\Http\Livewire\Admin\Clients\Show as ClientsShow;
-use App\Http\Livewire\Admin\Clients\Index as Clients;
+// FuneralHomes
+use App\Http\Livewire\Admin\FuneralHomes\Create as FuneralHomesCreate;
+use App\Http\Livewire\Admin\FuneralHomes\Edit as FuneralHomesEdit;
+use App\Http\Livewire\Admin\FuneralHomes\Show as FuneralHomesShow;
+use App\Http\Livewire\Admin\FuneralHomes\Index as FuneralHomes;
 
 // Users
 use App\Http\Livewire\Admin\Users\Edit as UsersEdit;
@@ -66,22 +63,14 @@ Route::middleware([
             Route::get('{sample}/edit', SamplesEdit::class)->name('.edit');
         });
 
-    // Orders
-    Route::prefix('orders')
-        ->name('orders')
+    // FuneralHomes
+    Route::prefix('funeral-homes')
+        ->name('funeral_homes')
         ->group(function () {
-            Route::get('/', Orders::class);
-            Route::get('{order}', OrdersShow::class)->name('.show');
-        });
-
-    // Clients
-    Route::prefix('clients')
-        ->name('clients')
-        ->group(function () {
-            Route::get('/', Clients::class);
-            Route::get('create', ClientsCreate::class)->name('.create');
-            Route::get('{client}', ClientsShow::class)->name('.show');
-            Route::get('{client}/edit', ClientsEdit::class)->name('.edit');
+            Route::get('/', FuneralHomes::class);
+            Route::get('create', FuneralHomesCreate::class)->name('.create');
+            Route::get('{funeral_home}', FuneralHomesShow::class)->name('.show');
+            Route::get('{funeral_home}/edit', FuneralHomesEdit::class)->name('.edit');
         });
 
     // Users

@@ -162,6 +162,8 @@
                     <div id="myTabContent">
                         <div wire:ignore.self class="hidden rounded-lg" id="selection1" role="tabpanel"
                             aria-labelledby="selection1-tab">
+
+                            @if(!$tribute->customMusics(1))
                             <select wire:model.lazy="music1_id"
                                 wire:change="selectMusic($event.target.value, 'music1_id')"
                                 class="px-4 h-12 w-full border border-stone-300 focus:border-stone-200 focus:ring-0 rounded-lg">
@@ -171,10 +173,32 @@
                                 <option value="{{$music->id}}">{{$music->title}}</option>
                                 @endforeach
                             </select>
+
+                            <div class="mt-4">
+                                <form wire:submit.prevent="uploadMusic('music1')"
+                                    class="w-full flex justify-center items-center border px-4 py-6 rounded-xl">
+                                    <input wire:model.lazy="music1" type="file" accept="audio/*" class="w-96 mx-4">
+                                    <button wire:loading.remove type="submit"
+                                        class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                        Upload Music 1
+                                    </button>
+                                </form>
+                            </div>
+                            @else
+                            <div class="flex items-center gap-6">
+                                <audio controls src="{{asset('storage/' . $tribute->customMusics(1)->path)}}"></audio>
+
+                                <button wire:click="removeMusic('{{$tribute->customMusics(1)->id}}')"
+                                    class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                    Remove
+                                </button>
+                            </div>
+                            @endif
                         </div>
 
                         <div wire:ignore.self class="hidden rounded-lg" id="selection2" role="tabpanel"
                             aria-labelledby="selection2-tab">
+                            @if(!$tribute->customMusics(2))
                             <select wire:model.lazy="music2_id"
                                 wire:change="selectMusic($event.target.value, 'music2_id')"
                                 class="px-4 h-12 w-full border border-stone-300 focus:border-stone-200 focus:ring-0 rounded-lg">
@@ -184,10 +208,32 @@
                                 <option value="{{$music->id}}">{{$music->title}}</option>
                                 @endforeach
                             </select>
+
+                            <div class="mt-4">
+                                <form wire:submit.prevent="uploadMusic('music2')"
+                                    class="w-full flex justify-center items-center border px-4 py-6 rounded-xl">
+                                    <input wire:model.lazy="music2" type="file" accept="audio/*" class="w-96 mx-4">
+                                    <button wire:loading.remove type="submit"
+                                        class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                        Upload Music 2
+                                    </button>
+                                </form>
+                            </div>
+                            @else
+                            <div class="flex items-center gap-6">
+                                <audio controls src="{{asset('storage/' . $tribute->customMusics(2)->path)}}"></audio>
+
+                                <button wire:click="removeMusic('{{$tribute->customMusics(2)->id}}')"
+                                    class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                    Remove
+                                </button>
+                            </div>
+                            @endif
                         </div>
 
                         <div wire:ignore.self class="hidden rounded-lg" id="selection3" role="tabpanel"
                             aria-labelledby="selection3-tab">
+                            @if(!$tribute->customMusics(3))
                             <select wire:model.lazy="music3_id"
                                 wire:change="selectMusic($event.target.value, 'music3_id')"
                                 class="px-4 h-12 w-full border border-stone-300 focus:border-stone-200 focus:ring-0 rounded-lg">
@@ -197,10 +243,32 @@
                                 <option value="{{$music->id}}">{{$music->title}}</option>
                                 @endforeach
                             </select>
+
+                            <div class="mt-4">
+                                <form wire:submit.prevent="uploadMusic('music3')"
+                                    class="w-full flex justify-center items-center border px-4 py-6 rounded-xl">
+                                    <input wire:model.lazy="music3" type="file" accept="audio/*" class="w-96 mx-4">
+                                    <button wire:loading.remove type="submit"
+                                        class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                        Upload Music 3
+                                    </button>
+                                </form>
+                            </div>
+                            @else
+                            <div class="flex items-center gap-6">
+                                <audio controls src="{{asset('storage/' . $tribute->customMusics(3)->path)}}"></audio>
+
+                                <button wire:click="removeMusic('{{$tribute->customMusics(3)->id}}')"
+                                    class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                    Remove
+                                </button>
+                            </div>
+                            @endif
                         </div>
 
                         <div wire:ignore.self class="hidden rounded-lg" id="selection4" role="tabpanel"
                             aria-labelledby="selection4-tab">
+                            @if(!$tribute->customMusics(4))
                             <select wire:model.lazy="music4_id"
                                 wire:change="selectMusic($event.target.value, 'music4_id')"
                                 class="px-4 h-12 w-full border border-stone-300 focus:border-stone-200 focus:ring-0 rounded-lg">
@@ -210,10 +278,32 @@
                                 <option value="{{$music->id}}">{{$music->title}}</option>
                                 @endforeach
                             </select>
+
+                            <div class="mt-4">
+                                <form wire:submit.prevent="uploadMusic('music4')"
+                                    class="w-full flex justify-center items-center border px-4 py-6 rounded-xl">
+                                    <input wire:model.lazy="music4" type="file" accept="audio/*" class="w-96 mx-4">
+                                    <button wire:loading.remove type="submit"
+                                        class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                        Upload Music 1
+                                    </button>
+                                </form>
+                            </div>
+                            @else
+                            <div class="flex items-center gap-6">
+                                <audio controls src="{{asset('storage/' . $tribute->customMusics(4)->path)}}"></audio>
+
+                                <button wire:click="removeMusic('{{$tribute->customMusics(4)->id}}')"
+                                    class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                    Remove
+                                </button>
+                            </div>
+                            @endif
                         </div>
 
                         <div wire:ignore.self class="hidden rounded-lg" id="selection5" role="tabpanel"
                             aria-labelledby="selection5-tab">
+                            @if(!$tribute->customMusics(5))
                             <select wire:model.lazy="music5_id"
                                 wire:change="selectMusic($event.target.value, 'music5_id')"
                                 class="px-4 h-12 w-full border border-stone-300 focus:border-stone-200 focus:ring-0 rounded-lg">
@@ -223,6 +313,27 @@
                                 <option value="{{$music->id}}">{{$music->title}}</option>
                                 @endforeach
                             </select>
+
+                            <div class="mt-4">
+                                <form wire:submit.prevent="uploadMusic('music5')"
+                                    class="w-full flex justify-center items-center border px-4 py-6 rounded-xl">
+                                    <input wire:model.lazy="music5" type="file" accept="audio/*" class="w-96 mx-4">
+                                    <button wire:loading.remove type="submit"
+                                        class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                        Upload Music 1
+                                    </button>
+                                </form>
+                            </div>
+                            @else
+                            <div class="flex items-center gap-6">
+                                <audio controls src="{{asset('storage/' . $tribute->customMusics(5)->path)}}"></audio>
+
+                                <button wire:click="removeMusic('{{$tribute->customMusics(5)->id}}')"
+                                    class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
+                                    Remove
+                                </button>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

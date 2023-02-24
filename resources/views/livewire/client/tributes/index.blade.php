@@ -30,10 +30,10 @@
         </div>
 
         <div class="flex-shrink-0 flex items-center bg-white rounded-md border">
-            <select wire:model.lazy="is_ready" class="w-full border-none focus:ring-0">
+            <select wire:model.lazy="status" class="w-full border-none focus:ring-0">
                 <option value="">All</option>
-                <option value="1">Ready</option>
-                <option value="0">Not Ready</option>
+                <option value="1">Slideshow Ready</option>
+                <option value="0">Slideshow Not Ready</option>
             </select>
         </div>
 
@@ -59,7 +59,7 @@
                 </tbody>
             </table>
 
-            <div class="p-4">
+            <div class="px-4">
                 @if($tributes && $tributes->links())
                 {{ $tributes->links() }}
                 @endif

@@ -11,6 +11,33 @@ class FuneralHome extends Model
 
     protected $guarded = [];
 
+    public function current_subscription()
+    {
+        return $this->hasOne(Subscription::class)->latestOfMany();
+    }
+
+    public function subscription_status()
+    {
+        $subscription = $this->current_subscription;
+
+        $active_state = false;
+        if ($subscription && $subscription->valid_till >= now()->format('Y-m-d')) {
+            $active_state = true;
+        }
+
+        return $active_state;
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tributes()
+    {
+        return $this->hasMany(Tribute::class);
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class);
@@ -19,10 +46,5 @@ class FuneralHome extends Model
     public function city()
     {
         return $this->belongsTo(City::class);
-    }
-
-    public function tributes()
-    {
-        return $this->hasMany(Tribute::class);
     }
 }

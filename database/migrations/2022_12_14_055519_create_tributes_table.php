@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tributes', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_ready')->default(false);
+            $table->boolean('status')->default(false);
             $table->string('record_id');
             $table->string('first_name');
             $table->string('last_name')->nullable();

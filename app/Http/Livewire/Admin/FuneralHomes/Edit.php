@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Clients;
+namespace App\Http\Livewire\Admin\FuneralHomes;
 
 use App\Models\City;
 use App\Models\FuneralHome;
@@ -58,7 +58,7 @@ class Edit extends Component
 
             DB::commit();
 
-            return redirect()->route('clients.show', $this->client->id);
+            return redirect()->route('funeral_homes.show', $this->client->id);
         } catch (Exception $exception) {
             DB::rollBack();
             dd($exception->getMessage());
@@ -68,6 +68,6 @@ class Edit extends Component
     public function render()
     {
         $states = State::where('active_state', true)->get();
-        return view('livewire.admin.clients.edit', compact('states'))->layout('layouts.admin');
+        return view('livewire.admin.funeral_homes.edit', compact('states'))->layout('layouts.admin');
     }
 }

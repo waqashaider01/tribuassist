@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->string('tribuassist_media_limit')->nullable();
+            $table->string('tribute_media_limit')->nullable();
             $table->timestamps();
         });
     }

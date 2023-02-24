@@ -7,7 +7,7 @@
     </div>
 
     <nav class="h-full overflow-y-auto space-y-3 py-8 px-8">
-        <a href="/" class="{{isActiveRoute('dashboard') ? 'sidebar-link-active' : 'sidebar-link' }}">
+        <a href="{{route('welcome')}}" class="{{isActiveRoute('welcome') ? 'sidebar-link-active' : 'sidebar-link' }}">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M1 10H7C7.55 10 8 9.55 8 9V1C8 0.45 7.55 0 7 0H1C0.45 0 0 0.45 0 1V9C0 9.55 0.45 10 1 10ZM1 18H7C7.55 18 8 17.55 8 17V13C8 12.45 7.55 12 7 12H1C0.45 12 0 12.45 0 13V17C0 17.55 0.45 18 1 18ZM11 18H17C17.55 18 18 17.55 18 17V9C18 8.45 17.55 8 17 8H11C10.45 8 10 8.45 10 9V17C10 17.55 10.45 18 11 18ZM10 1V5C10 5.55 10.45 6 11 6H17C17.55 6 18 5.55 18 5V1C18 0.45 17.55 0 17 0H11C10.45 0 10 0.45 10 1Z"
@@ -16,16 +16,8 @@
             {{__('Dashboard')}}
         </a>
 
-        <a href="{{route('orders')}}" class="{{isActiveRoute('orders') ? 'sidebar-link-active' : 'sidebar-link' }}">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-            </svg>
-            {{__('Orders')}}
-        </a>
-
-        <a href="{{route('clients')}}" class="{{isActiveRoute('clients') ? 'sidebar-link-active' : 'sidebar-link' }}">
+        <a href="{{route('funeral_homes')}}"
+            class="{{isActiveRoute('funeral_homes') ? 'sidebar-link-active' : 'sidebar-link' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"

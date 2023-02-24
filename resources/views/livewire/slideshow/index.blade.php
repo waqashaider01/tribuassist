@@ -37,7 +37,7 @@
                     </tr>
                     <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
                         <th class="w-1/4">Tribute Media Capacity</th>
-                        <td class="font-bold">300</td>
+                        <td class="font-bold">{{$appConfig->tribute_media_limit}}</td>
                     </tr>
                     <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
                         <th class="w-1/4">Current Count</th>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
                         <th class="w-1/4">Remaining</th>
-                        <td class="font-bold">{{300 - $tribute->images->count()}}</td>
+                        <td class="font-bold">{{$appConfig->tribute_media_limit - $tribute->images->count()}}</td>
                     </tr>
                 </table>
             </div>
@@ -53,7 +53,7 @@
             @livewire('slideshow.preferences', ['tribute' => $tribute])
             @livewire('slideshow.media-management', ['tribute' => $tribute])
 
-            @if(!$tribute->is_ready)
+            @if(!$tribute->status)
             <div class="">
                 <button wire:click="submit" class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

@@ -1,8 +1,8 @@
-@section('page_name', 'Clients')
+@section('page_name', 'Funeral Homes')
 
 <div class="min-h-[79vh] p-6 flex flex-col gap-6">
     <div class="flex items-end gap-2">
-        <a href="{{route('clients.create')}}"
+        <a href="{{route('funeral_homes.create')}}"
             class="flex items-center gap-2 h-12 w-fit px-4 border border-blue-900 rounded-xl bg-white text-blue-900">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus"
                 viewBox="0 0 16 16">
@@ -42,21 +42,21 @@
                 <thead class="w-full">
                     <tr class="table-header">
                         <th scope="col">Name</th>
-                        <th scope="col" class="text-center">Active State</th>
+                        <th scope="col" class="text-center">Status</th>
                         <th scope="col" class="text-center">Total Tributes</th>
                         <th scope="col" class="text-end">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody class="bg-white divide-y divide-stone-200">
-                    @foreach ($clients as $client)
-                    @livewire('admin.clients.item', ['client' => $client], key($client->id))
+                    @foreach ($funeral_homes as $funeral_home)
+                    @livewire('admin.funeral-homes.item', ['funeral_home' => $funeral_home], key($funeral_home->id))
                     @endforeach
                 </tbody>
             </table>
 
-            @if($clients && $clients->links())
-            {{ $clients->links() }}
+            @if($funeral_homes && $funeral_homes->links())
+            {{ $funeral_homes->links() }}
             @endif
         </div>
     </div>

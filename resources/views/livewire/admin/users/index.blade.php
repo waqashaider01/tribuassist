@@ -30,7 +30,7 @@
                 <thead class="w-full">
                     <tr class="table-header">
                         <th scope="col">Name</th>
-                        <th scope="col" class="text-center">Active State</th>
+                        <th scope="col" class="text-center">Status</th>
                         <th scope="col">Funeral Home</th>
                         <th scope="col" class="text-end">Actions</th>
                     </tr>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Clients;
+namespace App\Http\Livewire\Admin\FuneralHomes;
 
 use App\Models\FuneralHome;
 use Livewire\Component;
@@ -15,13 +15,13 @@ class Index extends Component
 
     public function render()
     {
-        $clients = FuneralHome::withCount('tributes')
+        $funeral_homes = FuneralHome::withCount('tributes')
             ->when($this->keyword, function ($query, $keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%');
             })
             ->latest()
             ->paginate($this->qty);
 
-        return view('livewire.admin.clients.index', compact('clients'))->layout('layouts.admin');
+        return view('livewire.admin.funeral_homes.index', compact('funeral_homes'))->layout('layouts.admin');
     }
 }

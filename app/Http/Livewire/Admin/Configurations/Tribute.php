@@ -8,17 +8,17 @@ use Livewire\Component;
 class Tribute extends Component
 {
     public $configuration;
-    public $tribuassist_media_limit = 1;
+    public $tribute_media_limit = 1;
 
     public function mount()
     {
         $this->configuration = Configuration::latest()->first();
-        $this->tribuassist_media_limit = $this->configuration->tribuassist_media_limit;
+        $this->tribute_media_limit = $this->configuration->tribute_media_limit;
     }
 
     public function save()
     {
-        $this->configuration->tribuassist_media_limit = $this->tribuassist_media_limit;
+        $this->configuration->tribute_media_limit = $this->tribute_media_limit;
         $this->configuration->save();
 
         $this->emitSelf('saved');

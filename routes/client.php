@@ -31,9 +31,13 @@ Route::middleware([
         ->name('tributes')
         ->group(function () {
             Route::get('/', Tributes::class);
-            Route::get('create', TributesCreate::class)->name('.create');
+            Route::get('create', TributesCreate::class)
+                ->middleware('active_subscriber')
+                ->name('.create');
             Route::get('{tribute}', TributesShow::class)->name('.show');
-            Route::get('{tribute}/edit', TributesEdit::class)->name('.edit');
+            Route::get('{tribute}/edit', TributesEdit::class)
+                ->middleware('active_subscriber')
+                ->name('.edit');
         });
 });
 
@@ -45,8 +49,4 @@ Route::middleware([
     Route::get('/', function () {
         return view('welcome');
     })->name('welcome');
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });

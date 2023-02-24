@@ -4,9 +4,9 @@
             {{$user->first_name . ' ' . $user->last_name}}
         </a>
     </td>
-    <td class="text-center">{{$user->active_state ? "Active" : "Inactive"}}</td>
+    <td class="text-center">{{$user->subscription_status() ? "Active" : "Inactive"}}</td>
     <td>
-        <a href="{{route('clients.show', $user->funeral_home?->id)}}" target="_blank">
+        <a href="{{route('funeral_homes.show', $user->funeral_home?->id)}}">
             {{$user->funeral_home?->name}}
         </a>
     </td>
