@@ -113,10 +113,12 @@ class Show extends Component
                 $zip->addFile(public_path('storage/' . $image->path), $fileName . '.' . $imageExtension);
 
                 // TXT file
-                $txtPath = 'temporary-files/' . $tribute->id . '/' . $fileName . '.txt';
-                $tempTxtFiles[] = $txtPath;
-                Storage::put($txtPath, $image->comment);
-                $zip->addFile(public_path('storage/' . $txtPath), $fileName . '.txt');
+                if($image->comment){
+                    $txtPath = 'temporary-files/' . $tribute->id . '/' . $fileName . '.txt';
+                    $tempTxtFiles[] = $txtPath;
+                    Storage::put($txtPath, $image->comment);
+                    $zip->addFile(public_path('storage/' . $txtPath), $fileName . '.txt');
+                }
             }
             // End: Adding images
 

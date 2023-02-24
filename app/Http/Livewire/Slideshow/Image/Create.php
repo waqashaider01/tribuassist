@@ -26,7 +26,9 @@ class Create extends Component
             'images.*' => 'image',
         ]);
 
-        $imagesCount = SlideshowImage::where('tribute_id', $this->tribute->id)->count();
+        $imagesCount = SlideshowImage::where('tribute_id', $this->tribute->id)
+            ->where('is_thumbnail', false)
+            ->count();
 
         foreach ($this->images as $image) {
             // Image numeric name

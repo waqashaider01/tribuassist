@@ -50,7 +50,6 @@ class Thumbnail extends Component
             SlideshowImage::create([
                 'tribute_id' => $this->tribute->id,
                 'is_thumbnail' => true,
-                'serial_number' => 1,
                 'path' => $image->storeAs('slideshows/images/' . $this->tribute->id, 'thumbnail.' .  $imageExtension)
             ]);
         }

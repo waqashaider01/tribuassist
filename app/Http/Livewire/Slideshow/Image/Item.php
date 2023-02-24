@@ -27,7 +27,7 @@ class Item extends Component
     {
         $imagesCount = SlideshowImage::where('tribute_id', $this->image->tribute_id)->count();
 
-        if ($this->serial_number > 1 && $this->serial_number <= $imagesCount) {
+        if ($this->serial_number <= $imagesCount) {
 
             if ($this->serial_number > $this->image->serial_number) {
                 $images = SlideshowImage::where([
