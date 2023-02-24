@@ -40,17 +40,14 @@ class Create extends Component
                 }
                 $imageNumericName = $newNumber;
             } else {
-                $imageNumericName = '002';
+                $imageNumericName = '001';
             }
-
-            // Image extension
-            $imageExtension = $image->getClientOriginalExtension();
 
             SlideshowImage::create([
                 'tribute_id' => $this->tribute->id,
                 'is_thumbnail' => false,
                 'serial_number' => $imagesCount + 1,
-                'path' => $image->storeAs('slideshows/images/' . $this->tribute->id, $imageNumericName  . '.' . $imageExtension),
+                'path' => $image->store('slideshows/images/' . $this->tribute->id),
             ]);
 
             $imagesCount += 1;

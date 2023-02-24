@@ -80,6 +80,21 @@ class Item extends Component
         // Delete image file
         Storage::delete($this->image->path);
 
+        $images = SlideshowImage::where([
+            'tribute_id' => $this->image->tribute_id,
+            'is_thumbnail' => false,
+        ])
+            ->whereNot('id', $this->image->id)
+            ->where('serial_number', '>', $this->image->serial_number)
+            ->select('id', 'tribute_id', 'serial_number', 'path')
+            ->get();
+
+        foreach ($images as $image) {
+            $serial_number = $image->serial_number - 1;
+            $image->serial_number = $serial_number;
+            $image->save();
+        }
+
         // Delete database record
         $this->image->delete();
 
