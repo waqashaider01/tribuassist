@@ -9,6 +9,10 @@ use App\Http\Livewire\Client\Tributes\Edit as TributesEdit;
 use App\Http\Livewire\Client\Tributes\Show as TributesShow;
 use App\Http\Livewire\Client\Tributes\Index as Tributes;
 
+// Orders
+use App\Http\Livewire\Client\Orders\Show as OrdersShow;
+use App\Http\Livewire\Client\Orders\Index as Orders;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +42,14 @@ Route::middleware([
             Route::get('{tribute}/edit', TributesEdit::class)
                 ->middleware('active_subscriber')
                 ->name('.edit');
+        });
+
+    // Orders
+    Route::prefix('orders')
+        ->name('orders')
+        ->group(function () {
+            Route::get('/', Orders::class);
+            Route::get('{tribute}', OrdersShow::class)->name('.show');
         });
 });
 

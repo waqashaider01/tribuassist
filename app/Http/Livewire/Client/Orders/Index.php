@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Client\Tributes;
+namespace App\Http\Livewire\Client\Orders;
 
 use App\Models\Tribute;
 use Livewire\Component;
@@ -11,6 +11,7 @@ class Index extends Component
     use WithPagination;
 
     public $keyword;
+    public $status = 1;
     public $qty = 12;
 
     public function updated()
@@ -20,13 +21,14 @@ class Index extends Component
 
     public function render()
     {
-        $tributes = Tribute::when($this->keyword, function ($query, $keyword) {
+        $orders = Tribute::when($this->keyword, function ($query, $keyword) {
             $query->where('first_name', 'like', '%' . $keyword . '%')
                 ->orwhere('last_name', 'like', '%' . $keyword . '%');
         })
+            ->where('status', 1)
             ->latest()
             ->paginate($this->qty);
 
-        return view('livewire.client.tributes.index', compact('tributes'))->layout('layouts.client');
+        return view('livewire.client.orders.index', compact('orders'))->layout('layouts.client');
     }
 }
