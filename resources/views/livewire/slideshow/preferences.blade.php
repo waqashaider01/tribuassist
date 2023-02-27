@@ -285,7 +285,7 @@
                                     <input wire:model.lazy="music4" type="file" accept="audio/*" class="w-96 mx-4">
                                     <button wire:loading.remove type="submit"
                                         class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
-                                        Upload Music 1
+                                        Upload Music 4
                                     </button>
                                 </form>
                             </div>
@@ -320,7 +320,7 @@
                                     <input wire:model.lazy="music5" type="file" accept="audio/*" class="w-96 mx-4">
                                     <button wire:loading.remove type="submit"
                                         class="flex-shrink-0 bg-black text-white font-bold px-4 py-2 rounded-lg">
-                                        Upload Music 1
+                                        Upload Music 5
                                     </button>
                                 </form>
                             </div>

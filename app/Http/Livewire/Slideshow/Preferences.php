@@ -123,24 +123,54 @@ class Preferences extends Component
             [$selection => $music_id]
         );
     }
+
     public function randomMusic()
     {
-        $musics = SlideshowSample::select('id', 'type', 'title', 'path')
-            ->where('type', 3)
-            ->inRandomOrder()
-            ->take(5)
-            ->get();
+        $uploadedMusics = $this->tribute->uploadedMusics;
+        $uploadedMusicsCount = $uploadedMusics?->count() ?? 0;
 
-        SlideshowPreference::updateOrCreate(
-            ['tribute_id' => $this->tribute->id],
-            [
-                'music1_id' => $musics[0]['id'],
-                'music2_id' => $musics[1]['id'],
-                'music3_id' => $musics[2]['id'],
-                'music4_id' => $musics[3]['id'],
-                'music5_id' => $musics[4]['id'],
-            ]
-        );
+        if ($uploadedMusicsCount) {
+
+            $musics = SlideshowSample::select('id', 'type', 'title', 'path')
+                ->where('type', 3)
+                ->inRandomOrder()
+                ->take(5 - $uploadedMusicsCount)
+                ->get();
+
+            $uploadedSelections = [];
+            foreach ($uploadedMusics as $music) {
+                $uploadedSelections[] = $music->selection_number;
+            }
+
+            $shouldRandomize = [];
+            for ($i = 1; $i <= 5; $i++) {
+                if (!in_array($i, $uploadedSelections)) {
+                    $shouldRandomize['music' . $i . '_id'] = $musics[count($shouldRandomize)]['id'];
+                }
+            }
+
+            SlideshowPreference::updateOrCreate(
+                ['tribute_id' => $this->tribute->id],
+                $shouldRandomize
+            );
+        } else {
+            $musics = SlideshowSample::select('id', 'type', 'title', 'path')
+                ->where('type', 3)
+                ->inRandomOrder()
+                ->take(5)
+                ->get();
+
+            SlideshowPreference::updateOrCreate(
+                ['tribute_id' => $this->tribute->id],
+                [
+                    'music1_id' => $musics[0]['id'],
+                    'music2_id' => $musics[1]['id'],
+                    'music3_id' => $musics[2]['id'],
+                    'music4_id' => $musics[3]['id'],
+                    'music5_id' => $musics[4]['id'],
+                ]
+            );
+        }
 
         return redirect()->route('ui.slideshow.edit');
     }
@@ -155,6 +185,13 @@ class Preferences extends Component
                 'selection_number' => str_replace('music', '', $tabName),
                 'path' => $file->store('slideshows/musics/' . $this->tribute->id)
             ]);
+
+            // Remove library music if exists
+            SlideshowPreference::where('tribute_id', $this->tribute->id)
+                ->first()
+                ->update([
+                    'music' . str_replace('music', '', $tabName) . '_id' => null
+                ]);
 
             $this->emitSelf('refreshSelf');
             // return redirect()->route('ui.slideshow.edit');

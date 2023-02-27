@@ -77,7 +77,6 @@ class Show extends Component
         if ($zip->open(public_path('storage/' . $filePath), ZipArchive::CREATE) === true) {
             $images = $tribute->images()->orderBy('serial_number', 'asc')->get();
 
-
             // Begin: Adding audio files
             $musics = [];
 
