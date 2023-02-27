@@ -14,7 +14,7 @@
         @if($funeral_home->subscription_status())
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Valid Till</th>
-            <td>{{$funeral_home->current_subscription?->valid_till}}</td>
+            <td>{{$funeral_home->current_subscription?->valid_till->format('d M, Y')}}</td>
         </tr>
         @endif
 

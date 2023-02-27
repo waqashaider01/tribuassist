@@ -11,6 +11,10 @@ class Subscription extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'valid_till' => 'date'
+    ];
+
     public function client()
     {
         return $this->hasOne(User::class);
