@@ -36,3 +36,4 @@ jobs:
           username: tamgadmin@tribuassist.com
           password: "jhtemp2023"
           port: 21
+          server-dir: /public_html/process/
