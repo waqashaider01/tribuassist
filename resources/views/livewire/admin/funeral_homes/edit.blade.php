@@ -8,7 +8,7 @@
             </x-slot>
 
             <x-slot name="description">
-                {{ __('Here you can only modify funeral home data.') }}
+                {{ __('Here you can modify funeral home data.') }}
             </x-slot>
 
             <x-slot name="form">

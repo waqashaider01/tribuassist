@@ -1,4 +1,4 @@
-@section('page_name', 'Orders')
+@section('page_name', 'Available Orders')
 
 <div class="min-h-[79vh] p-6 flex flex-col gap-6">
     <div class="flex gap-2 md:gap-4">

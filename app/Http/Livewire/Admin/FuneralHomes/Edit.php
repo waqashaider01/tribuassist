@@ -12,15 +12,15 @@ use Livewire\Component;
 class Edit extends Component
 {
     public $cities = [];
-    public $client;
+    public $funeral_home;
     public $funeral_home_name;
 
-    public function mount(FuneralHome $client)
+    public function mount(FuneralHome $funeral_home)
     {
-        $this->client = $client;
-        $this->cities = $client->state->cities;
+        $this->funeral_home = $funeral_home;
+        $this->cities = $funeral_home->state->cities;
 
-        foreach ($client->toArray() as $key => $value) {
+        foreach ($funeral_home->toArray() as $key => $value) {
             if ($key != 'id') {
                 $this->$key = $value;
             }
@@ -43,7 +43,7 @@ class Edit extends Component
             DB::beginTransaction();
 
             // Updating Funeral Home
-            $this->client->update([
+            $this->funeral_home->update([
                 'name' => $this->funeral_home_name,
                 'street' => $this->street,
                 'city_id' => $this->city_id,
@@ -58,7 +58,7 @@ class Edit extends Component
 
             DB::commit();
 
-            return redirect()->route('funeral_homes.show', $this->client->id);
+            return redirect()->route('funeral_homes.show', $this->funeral_home->id);
         } catch (Exception $exception) {
             DB::rollBack();
             dd($exception->getMessage());

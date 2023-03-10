@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Slideshow\Index as Slideshow;
 use App\Http\Livewire\Slideshow\Image\Edit as ImageEdit;
 use App\Models\FuneralHome;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +19,42 @@ use App\Models\FuneralHome;
 |
 */
 
-Route::get('funeral-homes/{funeral_home}/subscription-status', function (FuneralHome $funeral_home) {
-    return $funeral_home->subscription_status() ? 'Grant' : 'Deny';
-});
+Route::get(
+    'funeral-homes/{funeral_home}/subscription-status',
+    function (FuneralHome $funeral_home) {
+        return $funeral_home->subscription_status() ? 'Grant' : 'Deny';
+    }
+);
 
 // Slideshow
-Route::get('slideshow/edit', Slideshow::class)->name('ui.slideshow.edit');
-Route::get('slideshow/image/{image}', ImageEdit::class)->name('slideshow.image.edit');
-Route::post('slideshow/image/save', [ImageController::class, 'save'])->name('slideshow.image.save');
+Route::prefix('slideshow')
+    ->name('slideshow.')
+    ->group(function () {
+        Route::get('edit', Slideshow::class)->name('edit');
+
+        Route::prefix('image')
+            ->name('image.')
+            ->group(function () {
+                Route::get('{image}', ImageEdit::class)->name('edit');
+                Route::post('save', [ImageController::class, 'save'])->name('save');
+            });
+    });
 
 Route::post('image-cropper', [ImageController::class, 'cropImage'])->name('image-cropper');
+
+Route::get(
+    'artisan/{command?}/{passcode?}',
+    function ($command = 'optimize:clear', $passcode = null) {
+
+        if (!$passcode || !$passcode == "jayedh232") {
+            return "Unauthorized activity detected from " . request()->ip() . ' IP address.';
+        }
+
+        Artisan::call($command);
+        return "The command " . $command . " has been successfully executed.";
+    }
+);
+
 
 require __DIR__ . '/admin.php';
 require __DIR__ . '/client.php';

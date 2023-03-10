@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Define how much files can be uploaded under a tribute.') }}
+        {{ __('Define number of media files allowed in tribute.') }}
     </x-slot>
 
     <x-slot name="form">

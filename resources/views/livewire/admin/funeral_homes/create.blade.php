@@ -8,7 +8,7 @@
             </x-slot>
 
             <x-slot name="description">
-                {{ __('System will create a new user account and a funeral home by using these data.') }}
+                {{ __('System will create a new funeral home and user account.') }}
             </x-slot>
 
             <x-slot name="form">

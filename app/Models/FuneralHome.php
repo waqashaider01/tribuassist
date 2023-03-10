@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,6 +29,18 @@ class FuneralHome extends Model
         }
 
         return $active_state;
+    }
+
+    public function inGracePeriod()
+    {
+        $inGracePeriod = false;
+
+        $valid_till = $this->current_subscription->valid_till;
+        if ($valid_till->isPast()) {
+            $inGracePeriod = $valid_till->diffInDays(now()->format('Y-m-d')) <= 7;
+        }
+
+        return $inGracePeriod;
     }
 
     public function owner()

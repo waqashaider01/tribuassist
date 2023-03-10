@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\Configurations\Index as Configurations;
@@ -38,10 +37,6 @@ use App\Http\Livewire\Client\Tributes\Index as Tributes;
 | contains the 'web' middleware group. Now create something great!
 |
 */
-
-Route::get('tributes/manage/{tribute}', function () {
-    echo 'Tribute manage';
-})->name('ui.tribute.manage');
 
 Route::middleware([
     'auth:sanctum',
@@ -98,15 +93,4 @@ Route::middleware([
             Route::get('{tribute}', TributesShow::class)->name('.show');
             Route::get('{tribute}/edit', TributesEdit::class)->name('.edit');
         });
-});
-
-Route::get('artisan/{command?}/{passcode?}', function ($command = 'optimize:clear', $passcode = null) {
-
-    if (!$passcode || !$passcode == 'jayedh232') {
-        return 'Unauthorized activity detected from ' . request()->ip() . ' IP address.';
-    }
-
-    Artisan::call($command);
-
-    return 'The command ' . $command . ' has been successfully executed.';
 });

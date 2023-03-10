@@ -8,7 +8,14 @@
         </tr>
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Subscription Status</th>
-            <td>{{$funeral_home->subscription_status() ? "Active" : "Inactive"}}</td>
+            <td>
+                <div class="">
+                    {{$funeral_home->subscription_status() ? "Active" : "Inactive"}}
+                    @if($funeral_home->inGracePeriod())
+                        (In Grace)
+                    @endif
+                </div>
+            </td>
         </tr>
 
         @if($funeral_home->subscription_status())
