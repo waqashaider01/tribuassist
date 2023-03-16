@@ -16,7 +16,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.1"
-          extensions: pdo_mysql
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
       - name: Copy .env
@@ -35,6 +34,6 @@ jobs:
         with:
           server: ftp.tribuassist.com
           username: jayed@tribuassist.com
-          password: '@@Tawhid232@@'
+          password: "@@Tawhid232@@"
           port: 21
           server-dir: /process/
