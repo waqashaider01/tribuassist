@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Begin: Configuration
-        // View::share('appConfig', Configuration::latest()->first());
+        View::share('appConfig', Configuration::latest()->first());
         // End: Configuration
     }
 }
