@@ -34,5 +34,6 @@ jobs:
         with:
           server: ftp.tribuassist.com
           username: jayed@tribuassist.com
-          password: "@@Tawhid232@@"
+          password: '@@Tawhid232@@'
           port: 21
+          server-dir: /process/
