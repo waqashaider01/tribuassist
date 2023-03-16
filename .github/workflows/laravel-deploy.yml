@@ -36,4 +36,4 @@ jobs:
           username: jayed@tribuassist.com
           password: "@@Tawhid232@@"
           port: 21
-          server-dir: /home/tamgadmin/public_html/process
+          server-dir: /home/tamgadmin/public_html/process/
