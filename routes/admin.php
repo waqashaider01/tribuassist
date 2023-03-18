@@ -21,11 +21,6 @@ use App\Http\Livewire\Admin\Users\Edit as UsersEdit;
 use App\Http\Livewire\Admin\Users\Show as UsersShow;
 use App\Http\Livewire\Admin\Users\Index as Users;
 
-// Tributes
-use App\Http\Livewire\Client\Tributes\Create as TributesCreate;
-use App\Http\Livewire\Client\Tributes\Edit as TributesEdit;
-use App\Http\Livewire\Client\Tributes\Show as TributesShow;
-use App\Http\Livewire\Client\Tributes\Index as Tributes;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,22 +70,5 @@ Route::middleware([
             Route::get('/', Users::class);
             Route::get('{user}', UsersShow::class)->name('.show');
             Route::get('{user}/edit', UsersEdit::class)->name('.edit');
-        });
-});
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-
-    // Tributes
-    Route::prefix('tributes')
-        ->name('tributes')
-        ->group(function () {
-            Route::get('/', Tributes::class);
-            Route::get('create', TributesCreate::class)->name('.create');
-            Route::get('{tribute}', TributesShow::class)->name('.show');
-            Route::get('{tribute}/edit', TributesEdit::class)->name('.edit');
         });
 });

@@ -172,7 +172,7 @@ class Preferences extends Component
             );
         }
 
-        return redirect()->route('ui.slideshow.edit');
+        return redirect()->route('slideshow.edit');
     }
 
     public function uploadMusic($tabName)
@@ -194,7 +194,7 @@ class Preferences extends Component
                 ]);
 
             $this->emitSelf('refreshSelf');
-            // return redirect()->route('ui.slideshow.edit');
+            // return redirect()->route('slideshow.edit');
         }
     }
 

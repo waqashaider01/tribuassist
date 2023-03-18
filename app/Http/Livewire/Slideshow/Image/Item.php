@@ -64,7 +64,7 @@ class Item extends Component
             $this->image->save();
         }
 
-        // return redirect()->route('ui.slideshow.edit');
+        // return redirect()->route('slideshow.edit');
 
         $this->emit('refreshImageComponent');
     }
