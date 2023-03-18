@@ -1,4 +1,4 @@
-@if(auth()->user()->role === 1)
+@if(auth()->user()->role == 1)
 <x-admin-layout>
     @section('page_name', 'Dashboard')
 
@@ -11,7 +11,7 @@
     </div>
 </x-admin-layout>
 
-@elseif(auth()->user()->role === 2)
+@elseif(auth()->user()->role == 2)
 <x-client-layout>
     @section('page_name', 'Dashboard')
 

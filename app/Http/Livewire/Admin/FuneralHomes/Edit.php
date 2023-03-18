@@ -24,7 +24,7 @@ class Edit extends Component
             if ($key != 'id') {
                 $this->$key = $value;
             }
-            if ($key === 'name') {
+            if ($key == 'name') {
                 $this->funeral_home_name = $value;
             }
         }

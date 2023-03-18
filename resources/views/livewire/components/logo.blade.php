@@ -5,9 +5,9 @@
     <div class="">
         <strong class="block text-2xl uppercase">TribuAssist</strong>
         <small class="text-white/60">
-            @if(auth()->user()->role === 1)
+            @if(auth()->user()->role == 1)
             Admin
-            @elseif(auth()->user()->role === 2)
+            @elseif(auth()->user()->role == 2)
             Funeral Home
             @else
             Customer

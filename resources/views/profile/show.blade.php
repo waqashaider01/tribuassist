@@ -1,4 +1,4 @@
-@if(auth()->user()->role === 1)
+@if(auth()->user()->role == 1)
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -45,7 +45,7 @@
     </div>
 </x-admin-layout>
 
-@elseif(auth()->user()->role === 2)
+@elseif(auth()->user()->role == 2)
 <x-client-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
