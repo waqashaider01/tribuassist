@@ -40,7 +40,7 @@ Route::get(
 Route::prefix('slideshow')
     ->name('slideshow.')
     ->group(function () {
-        Route::get('edit', Slideshow::class)->name('edit');
+        Route::get('edit/{tribute_id?}', Slideshow::class)->name('edit');
 
         Route::prefix('image')
             ->name('image.')

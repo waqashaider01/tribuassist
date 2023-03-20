@@ -29,6 +29,16 @@
                 class="w-full border-none focus:ring-0">
         </div>
 
+        <div class="flex-shrink-0 flex items-center bg-white rounded-md border">
+            <select wire:model.lazy="type" class="w-full border-none focus:ring-0">
+                <option value="">All Types</option>
+                <option value="1">{{__('Slideshow Style')}}</option>
+                <option value="2">{{__('Tribute Theme')}}</option>
+                <option value="3">{{__('Background Music')}}</option>
+                <option value="4">{{__('DVD Package Theme')}}</option>
+            </select>
+        </div>
+
         <div class="flex items-center bg-white rounded-md border">
             <input wire:model.lazy="qty" type="number" min="1" class="w-full border-none focus:ring-0">
         </div>

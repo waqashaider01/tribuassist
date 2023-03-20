@@ -18,9 +18,13 @@ class AccountCreated extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public $password;
+
+    public function __construct($user, $password)
     {
-        //
+        $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -43,7 +47,7 @@ class AccountCreated extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.clients.account-created',
+            markdown: 'emails.orders.account-created',
         );
     }
 

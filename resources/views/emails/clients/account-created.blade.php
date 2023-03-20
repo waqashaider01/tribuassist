@@ -1,12 +1,17 @@
-<x-mail::message>
-# Introduction
+@component('mail::message')
 
-The body of your message.
+@component('mail::panel')
+Login credentials
+@endcomponent
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+Dear {{$user->name}},
+we just created an account for you. Please use these credentials to login.
 
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+# Email: {{$user->email}}
+# Password: {{$password}}
+
+@component('mail::button', ['url' => env('APP_URL') . '/login'])
+Login Now
+@endcomponent
+
+@endcomponent

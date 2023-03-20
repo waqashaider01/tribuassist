@@ -10,6 +10,9 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use App\Mail\AccountCreated;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class Create extends Component
 {
@@ -44,12 +47,13 @@ class Create extends Component
             DB::beginTransaction();
 
             // Creating User
+            $temporaryPassword = Str::random(8);
             $user = User::create([
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
                 'email' => $this->email,
                 'phone' => $this->phone,
-                'password' => Hash::make('abcd1234'),
+                'password' => Hash::make($temporaryPassword),
             ]);
 
             // Creating Funeral Home
@@ -68,6 +72,8 @@ class Create extends Component
             ]);
 
             DB::commit();
+
+            Mail::to($user->email)->send(new AccountCreated($user, $temporaryPassword));
 
             return redirect()->route('funeral_homes.show', $client->id);
         } catch (Exception $exception) {

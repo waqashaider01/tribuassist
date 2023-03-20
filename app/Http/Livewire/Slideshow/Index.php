@@ -3,20 +3,38 @@
 namespace App\Http\Livewire\Slideshow;
 
 use App\Models\Tribute;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public $is_editable = false;
+
     public $tribute;
     public $funeralHome;
 
     public $tribute_id;
     public $password;
 
-    public function mount()
+    public function mount(Request $request)
     {
-        $this->getTributeData();
+        if ($request->tribute_id) {
+            if (auth()->check() && auth()->user()->role == 2) {
+                $this->tribute = Tribute::findOrFail($request->tribute_id);
+                $this->funeralHome = $this->tribute->funeralHome;
+
+                if ($this->funeralHome->user_id == auth()->id()) {
+                    $this->is_editable = true;
+                } else {
+                    return redirect('/');
+                }
+            } else {
+                return redirect('/');
+            }
+        } else {
+            $this->getTributeData();
+        }
     }
 
     public function getTributeData()

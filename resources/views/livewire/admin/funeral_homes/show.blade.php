@@ -3,6 +3,10 @@
 <div class="bg-white p-8 space-y-8">
     <table class="w-full border">
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
+            <th>Funeral Home Id</th>
+            <td>{{$funeral_home->id}}</td>
+        </tr>
+        <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Name</th>
             <td>{{$funeral_home->name}}</td>
         </tr>
