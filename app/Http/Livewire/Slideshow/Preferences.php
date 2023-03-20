@@ -36,6 +36,12 @@ class Preferences extends Component
     public $music4;
     public $music5;
 
+    // Filling States
+    public $videoStyle      = false;
+    public $tributeTheme    = false;
+    public $backgroundMusic = false;
+    public $dvdPackageTheme = false;
+
     protected $listeners = ['refreshSelf' => '$refresh'];
 
     public function mount($tribute)
@@ -70,6 +76,16 @@ class Preferences extends Component
             $this->music5_id = $preference->music5_id;
             $this->package_theme_id = $preference->package_theme_id;
         }
+
+        $this->checkPreferenceStates();
+    }
+
+    public function checkPreferenceStates()
+    {
+        if ($this->style_id) $this->videoStyle = true;
+        if ($this->theme_id) $this->tributeTheme = true;
+        if ($this->music1_id && $this->music2_id && $this->music3_id && $this->music4_id && $this->music5_id) $this->backgroundMusic = true;
+        if ($this->package_theme_id) $this->dvdPackageTheme = true;
     }
 
     // Begin: Style
