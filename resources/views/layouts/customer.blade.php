@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'TribuAssist') }}</title>
+    <link rel="shortcut icon" href="{{asset('logo.png')}}" type="image/x-icon">
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
