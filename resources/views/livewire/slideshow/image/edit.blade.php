@@ -20,6 +20,14 @@
         crossOrigin: true,
         baseUrl: '/plugins/pixie/assets',
         image: "{{asset('storage/' . $image->path)}}",
+        tools: {
+            crop: {
+                replaceDefaultPresets: false,
+                presets: [
+                    {ratio: '9:16', name: 'Portrait'}
+                ]
+            }
+        },
 
         onSave: async function(data, name) {
             const state = pixie.getState();
