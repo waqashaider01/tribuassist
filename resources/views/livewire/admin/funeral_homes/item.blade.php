@@ -3,7 +3,7 @@
         <a href="{{route('funeral_homes.show', $funeral_home->id)}}">{{$funeral_home->name}}</a>
     </td>
     <td class="text-center">{{$funeral_home->subscription_status() ? "Active" : "Inactive"}}</td>
-    <td class="text-center">{{$funeral_home->tributes_count}}</td>
+    <td class="text-center hidden md:block">{{$funeral_home->tributes_count}}</td>
     <td>
         <div class="flex justify-end items-center gap-2">
             <a href="{{route('funeral_homes.show', $funeral_home->id)}}"

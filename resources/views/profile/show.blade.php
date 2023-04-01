@@ -1,4 +1,5 @@
 @if(auth()->user()->role == 1)
+@section('page_name', 'Configurations')
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

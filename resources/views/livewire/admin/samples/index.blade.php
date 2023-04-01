@@ -13,8 +13,8 @@
         </a>
     </div>
 
-    <div class="flex gap-2 md:gap-4">
-        <div class="w-full flex items-center bg-white rounded-md border">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
+        <div class="flex items-center bg-white rounded-md border">
             <div class="p-4 pr-0">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -29,7 +29,7 @@
                 class="w-full border-none focus:ring-0">
         </div>
 
-        <div class="flex-shrink-0 flex items-center bg-white rounded-md border">
+        <div class="flex items-center bg-white rounded-md border">
             <select wire:model.lazy="type" class="w-full border-none focus:ring-0">
                 <option value="">All Types</option>
                 <option value="1">{{__('Slideshow Style')}}</option>

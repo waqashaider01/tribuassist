@@ -43,7 +43,7 @@
                     <tr class="table-header">
                         <th scope="col">Name</th>
                         <th scope="col" class="text-center">Status</th>
-                        <th scope="col" class="text-center">Total Tributes</th>
+                        <th scope="col" class="hidden md:block text-center">Total Tributes</th>
                         <th scope="col" class="text-end">Actions</th>
                     </tr>
                 </thead>

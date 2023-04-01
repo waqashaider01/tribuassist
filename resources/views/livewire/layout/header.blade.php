@@ -1,4 +1,4 @@
-<div class="sticky top-0 flex justify-between items-center px-6 py-4 bg-blue-900 md:bg-white border-b">
+<div class="sticky top-0 flex justify-between items-center px-6 py-4 bg-[#111E43] md:bg-white border-b">
 
     <div class="md:hidden">
         <a href="/">
@@ -57,11 +57,13 @@
 
         {{-- User --}}
         <div class="flex items-center gap-2">
-            <div class="hidden md:flex flex-col justify-start gap-1">
+            <div class="flex flex-col justify-start gap-1">
                 <div>
-                    <div class="font-semibold">{{auth()->user()->first_name}}</div>
+                    <div class="font-semibold text-white md:text-[#111E43]">
+                        {{auth()->user()->first_name}}
+                    </div>
 
-                    <button class="flex items-center gap-1 text-gray-600" id="userDropdown"
+                    <button class="flex items-center gap-1 text-gray-400" id="userDropdown"
                         data-dropdown-toggle="dropdownUser">
                         <small>Profile</small>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
@@ -95,6 +97,32 @@
                                     fill="currentColor" />
                             </svg>
                             Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('orders')}}"
+                            class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1 10H7C7.55 10 8 9.55 8 9V1C8 0.45 7.55 0 7 0H1C0.45 0 0 0.45 0 1V9C0 9.55 0.45 10 1 10ZM1 18H7C7.55 18 8 17.55 8 17V13C8 12.45 7.55 12 7 12H1C0.45 12 0 12.45 0 13V17C0 17.55 0.45 18 1 18ZM11 18H17C17.55 18 18 17.55 18 17V9C18 8.45 17.55 8 17 8H11C10.45 8 10 8.45 10 9V17C10 17.55 10.45 18 11 18ZM10 1V5C10 5.55 10.45 6 11 6H17C17.55 6 18 5.55 18 5V1C18 0.45 17.55 0 17 0H11C10.45 0 10 0.45 10 1Z"
+                                    fill="currentColor" />
+                            </svg>
+                            Orders
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('tributes')}}"
+                            class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1 10H7C7.55 10 8 9.55 8 9V1C8 0.45 7.55 0 7 0H1C0.45 0 0 0.45 0 1V9C0 9.55 0.45 10 1 10ZM1 18H7C7.55 18 8 17.55 8 17V13C8 12.45 7.55 12 7 12H1C0.45 12 0 12.45 0 13V17C0 17.55 0.45 18 1 18ZM11 18H17C17.55 18 18 17.55 18 17V9C18 8.45 17.55 8 17 8H11C10.45 8 10 8.45 10 9V17C10 17.55 10.45 18 11 18ZM10 1V5C10 5.55 10.45 6 11 6H17C17.55 6 18 5.55 18 5V1C18 0.45 17.55 0 17 0H11C10.45 0 10 0.45 10 1Z"
+                                    fill="currentColor" />
+                            </svg>
+                            Tributes
                         </a>
                     </li>
 

@@ -11,6 +11,10 @@
             <td>{{$funeral_home->name}}</td>
         </tr>
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
+            <th>Total Tributes</th>
+            <td>{{$funeral_home->tributes->count()}}</td>
+        </tr>
+        <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Subscription Status</th>
             <td>
                 <div class="">
@@ -56,7 +60,7 @@
 
     <div class="space-y-4">
         <h2>Extend Subscription</h2>
-        <div class="flex items-center gap-4">
+        <div class="flex flex-wrap items-center gap-4">
             <div class="">
                 <button data-modal-target="popup-modal-1" data-modal-toggle="popup-modal-1"
                     class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 1 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
