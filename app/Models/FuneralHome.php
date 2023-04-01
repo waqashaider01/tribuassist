@@ -11,14 +11,14 @@ class FuneralHome extends Model
 
     protected $guarded = [];
 
-    public function current_subscription()
+    public function subscription()
     {
         return $this->hasOne(Subscription::class)->latestOfMany();
     }
 
     public function subscription_status()
     {
-        $subscription = $this->current_subscription;
+        $subscription = $this->subscription;
 
         if ($subscription && $subscription->valid_till >= now()->format('Y-m-d')) {
             $active_state = true;
@@ -35,7 +35,7 @@ class FuneralHome extends Model
     {
         $inGracePeriod = false;
 
-        $valid_till = $this->current_subscription->valid_till;
+        $valid_till = $this->subscription->valid_till;
         if ($valid_till->isPast()) {
             $inGracePeriod = $valid_till->diffInDays(now()->format('Y-m-d')) <= 7;
         }

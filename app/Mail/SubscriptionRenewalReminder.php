@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AccountCreated extends Mailable
+class SubscriptionRenewalReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,13 +18,10 @@ class AccountCreated extends Mailable
      *
      * @return void
      */
-    public $user;
-    public $password;
 
-    public function __construct($user, $password)
+    public function __construct()
     {
-        $this->user = $user;
-        $this->password = $password;
+        // 
     }
 
     /**
@@ -35,7 +32,7 @@ class AccountCreated extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Account Created',
+            subject: 'Subscription expiring soon',
         );
     }
 
@@ -47,7 +44,7 @@ class AccountCreated extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'emails.clients.account-created',
+            markdown: 'emails.clients.subscription-renewal-reminder',
         );
     }
 

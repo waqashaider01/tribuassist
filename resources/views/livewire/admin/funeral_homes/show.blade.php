@@ -16,7 +16,7 @@
                 <div class="">
                     {{$funeral_home->subscription_status() ? "Active" : "Inactive"}}
                     @if($funeral_home->inGracePeriod())
-                        (In Grace)
+                    (In Grace)
                     @endif
                 </div>
             </td>
@@ -25,7 +25,7 @@
         @if($funeral_home->subscription_status())
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Valid Till</th>
-            <td>{{$funeral_home->current_subscription?->valid_till->format('d M, Y')}}</td>
+            <td>{{$funeral_home->subscription?->valid_till->format('d M, Y')}}</td>
         </tr>
         @endif
 
@@ -59,7 +59,7 @@
         <div class="flex items-center gap-4">
             <div class="">
                 <button data-modal-target="popup-modal-1" data-modal-toggle="popup-modal-1"
-                    class="{{$funeral_home->subscription_status() && $funeral_home->current_subscription?->for_months == 1 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
+                    class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 1 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
                     1 Month
                 </button>
 
@@ -103,7 +103,7 @@
 
             <div class="">
                 <button data-modal-target="popup-modal-2" data-modal-toggle="popup-modal-2"
-                    class="{{$funeral_home->subscription_status() && $funeral_home->current_subscription?->for_months == 2 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
+                    class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 2 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
                     2 Months
                 </button>
 
@@ -147,7 +147,7 @@
 
             <div class="">
                 <button data-modal-target="popup-modal-3" data-modal-toggle="popup-modal-3"
-                    class="{{$funeral_home->subscription_status() && $funeral_home->current_subscription?->for_months == 3 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
+                    class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 3 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
                     3 Months
                 </button>
 
@@ -191,7 +191,7 @@
 
             <div class="">
                 <button data-modal-target="popup-modal-6" data-modal-toggle="popup-modal-6"
-                    class="{{$funeral_home->subscription_status() && $funeral_home->current_subscription?->for_months == 6 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
+                    class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 6 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
                     6 Months
                 </button>
 
@@ -235,7 +235,7 @@
 
             <div class="">
                 <button data-modal-target="popup-modal-12" data-modal-toggle="popup-modal-12"
-                    class="{{$funeral_home->subscription_status() && $funeral_home->current_subscription?->for_months == 12 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
+                    class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 12 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
                     1 Year
                 </button>
 
@@ -280,7 +280,7 @@
 
             <div class="">
                 <button data-modal-target="popup-modal-24" data-modal-toggle="popup-modal-24"
-                    class="{{$funeral_home->subscription_status() && $funeral_home->current_subscription?->for_months == 24 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
+                    class="{{$funeral_home->subscription_status() && $funeral_home->subscription?->for_months == 24 ? 'subscription-preset-button-active' : 'subscription-preset-button' }}">
                     2 Years
                 </button>
 
