@@ -3,7 +3,7 @@
         Media Management
     </h2>
 
-    <div class="p-8">
+    <div class="p-2 md:p-8">
         @livewire('slideshow.image.index', ['tribute' => $tribute])
     </div>
 </div>

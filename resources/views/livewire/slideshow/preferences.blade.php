@@ -3,7 +3,7 @@
         Slideshow Preferences
     </h2>
 
-    <div class="p-8">
+    <div class="md:p-8">
         <div id="accordion-collapse" data-accordion="collapse">
             <h2 id="accordion-collapse-heading-1">
                 <button type="button"
@@ -41,7 +41,7 @@
                         </select>
                     </div>
 
-                    <div class="grid grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         @foreach ($styles as $style)
                         <div class="rounded-xl overflow-hidden border p-4">
                             <video controls>
@@ -97,7 +97,7 @@
                         </select>
                     </div>
 
-                    <div class="grid grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         @foreach ($themes as $theme)
                         <div class="rounded-xl overflow-hidden border p-4">
                             <video controls>
@@ -399,7 +399,7 @@
                         </select>
                     </div>
 
-                    <div class="grid grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         @foreach ($package_themes as $theme)
                         <div class="rounded-xl overflow-hidden border p-4">
                             <div>

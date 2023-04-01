@@ -1,5 +1,5 @@
 @if(session('_tati_') || $is_editable)
-<div class="py-12">
+<div class="px-4 py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="space-y-8">
             <div class="bg-white rounded-xl overflow-hidden p-6">
@@ -71,7 +71,7 @@
 @else
 <div class="h-screen py-12 bg-white">
     <form wire:submit.prevent="authenticate"
-        class="h-full w-1/4 mx-auto flex justify-center items-center sm:px-6 lg:px-8">
+        class="h-full md:w-1/4 mx-auto flex justify-center items-center px-6 lg:px-8">
         <div class="space-y-4">
             <div class="flex items-center h-fit w-full border rounded-xl overflow-hidden" x-data="{password: true}">
                 <div class="text-stone-700 pl-4">
