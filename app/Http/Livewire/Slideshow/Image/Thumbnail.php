@@ -12,11 +12,13 @@ class Thumbnail extends Component
     use WithFileUploads;
 
     public $tribute;
+    public $editable;
     public $thumbnail;
 
-    public function mount($tribute)
+    public function mount($tribute, $editable = true)
     {
         $this->tribute = $tribute;
+        $this->editable = $editable;
     }
 
     public function uploadThumbnail()

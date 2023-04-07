@@ -10,4 +10,9 @@ class SlideshowImage extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function tribute()
+    {
+        return $this->belongsTo(Tribute::class);
+    }
 }

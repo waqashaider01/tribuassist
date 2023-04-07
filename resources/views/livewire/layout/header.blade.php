@@ -59,7 +59,11 @@
         <div class="flex items-center gap-2">
             <div class="flex flex-col justify-start gap-1">
                 <div>
-                    <div class="font-semibold text-white md:text-[#111E43]">
+                    <div class="md:hidden font-semibold text-white">
+                        {{auth()->user()->first_name}}
+                    </div>
+
+                    <div class="hidden md:block font-semibold text-[#111E43]">
                         {{auth()->user()->first_name}}
                     </div>
 

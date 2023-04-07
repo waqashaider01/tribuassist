@@ -8,6 +8,8 @@ use Livewire\Component;
 
 class Item extends Component
 {
+    public $editable;
+
     public $image;
     public $serializable;
     public $serial_number;
@@ -15,10 +17,11 @@ class Item extends Component
 
     protected $listeners = ['refreshImageItems' => '$refresh'];
 
-    public function mount($image, $serializable = true)
+    public function mount($image, $serializable = true, $editable = true)
     {
         $this->image = $image;
         $this->serializable = $serializable;
+        $this->editable = $editable;
         $this->serial_number = $image->serial_number;
         $this->comment = $image->comment;
     }

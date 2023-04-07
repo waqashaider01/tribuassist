@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Slideshow;
 
+use App\Models\SlideshowPreference;
 use App\Models\Tribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,7 @@ use Livewire\Component;
 class Index extends Component
 {
     public $is_editable = false;
+    public $is_submitable = false;
 
     public $tribute;
     public $funeralHome;
@@ -64,10 +66,80 @@ class Index extends Component
         return back();
     }
 
+    public function checkIfSubmitable()
+    {
+        $is_submitable = false;
+
+        $preference = SlideshowPreference::where('tribute_id', $this->tribute->id)->first();
+        if ($preference) {
+            $style_id = $preference->style_id;
+            $theme_id = $preference->theme_id;
+            $music1_id = $preference->music1_id;
+            $music2_id = $preference->music2_id;
+            $music3_id = $preference->music3_id;
+            $music4_id = $preference->music4_id;
+            $music5_id = $preference->music5_id;
+            $package_theme_id = $preference->package_theme_id;
+        }
+
+        $uploadedMusics = $this->tribute->uploadedMusics;
+        if ($uploadedMusics) {
+            foreach ($uploadedMusics as $music) {
+                $musicId = 'music' . $music->selection_number . '_id';
+                $$musicId = $music->selection_number;
+            }
+        }
+
+        $videoStyle = false;
+        $tributeTheme = false;
+        $backgroundMusic = false;
+        $dvdPackageTheme = false;
+        $thumbnail = false;
+
+        if ($style_id) $videoStyle = true;
+        if ($theme_id) $tributeTheme = true;
+        if ($music1_id && $music2_id && $music3_id && $music4_id && $music5_id) $backgroundMusic = true;
+        if ($package_theme_id) $dvdPackageTheme = true;
+
+        if ($this->tribute->images()->where('is_thumbnail', true)->exists()) {
+            $thumbnail = true;
+        }
+
+        // Dispatch event
+        if (
+            $videoStyle
+            && $tributeTheme
+            && $backgroundMusic
+            && $dvdPackageTheme
+            && $thumbnail
+        ) {
+            // dd('Yes');
+            $this->is_submitable = true;
+        } else {
+            // dd('No');
+            $this->is_submitable = false;
+        }
+    }
+
     public function submit()
     {
-        $this->tribute->status = 1;
-        $this->tribute->save();
+        if ($this->is_submitable) {
+            $this->tribute->status = 1;
+            $this->tribute->increment('order_number');
+            $this->tribute->save();
+
+            return redirect(request()->fingerprint['path']);
+        }
+    }
+
+    public function editAgain()
+    {
+        if ($this->tribute->status = 3) {
+            $this->tribute->status = 0;
+            $this->tribute->save();
+
+            return redirect(request()->fingerprint['path']);
+        }
     }
 
     public function render()

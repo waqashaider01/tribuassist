@@ -82,6 +82,14 @@ class Preferences extends Component
 
     public function checkPreferenceStates()
     {
+        $uploadedMusics = $this->tribute->uploadedMusics;
+        if ($uploadedMusics) {
+            foreach ($uploadedMusics as $music) {
+                $musicId = 'music' . $music->selection_number . '_id';
+                $this->$musicId = $music->selection_number;
+            }
+        }
+
         if ($this->style_id) $this->videoStyle = true;
         if ($this->theme_id) $this->tributeTheme = true;
         if ($this->music1_id && $this->music2_id && $this->music3_id && $this->music4_id && $this->music5_id) $this->backgroundMusic = true;
@@ -93,17 +101,21 @@ class Preferences extends Component
     {
         $this->saveStyle($this->style_id);
     }
+
     public function selectStyle($style_id)
     {
         $this->style_id = $style_id;
         $this->saveStyle($style_id);
     }
+
     public function saveStyle($style_id)
     {
         SlideshowPreference::updateOrCreate(
             ['tribute_id' => $this->tribute->id],
             ['style_id' => $style_id]
         );
+
+        $this->checkPreferenceStates();
     }
     // End: Style
 
@@ -123,6 +135,8 @@ class Preferences extends Component
             ['tribute_id' => $this->tribute->id],
             ['theme_id' => $theme_id]
         );
+
+        $this->checkPreferenceStates();
     }
     // End: Theme
 
@@ -138,6 +152,7 @@ class Preferences extends Component
             ['tribute_id' => $this->tribute->id],
             [$selection => $music_id]
         );
+        $this->checkPreferenceStates();
     }
 
     public function randomMusic()
@@ -188,7 +203,9 @@ class Preferences extends Component
             );
         }
 
-        return redirect()->route('slideshow.edit');
+        $this->checkPreferenceStates();
+
+        return redirect(request()->fingerprint['path']);
     }
 
     public function uploadMusic($tabName)
@@ -212,11 +229,15 @@ class Preferences extends Component
             $this->emitSelf('refreshSelf');
             // return redirect()->route('slideshow.edit');
         }
+
+        $this->checkPreferenceStates();
     }
 
     public function removeMusic($id)
     {
         SlideshowMusic::find($id)->delete();
+
+        $this->checkPreferenceStates();
     }
     // End: Music
 
@@ -236,6 +257,8 @@ class Preferences extends Component
             ['tribute_id' => $this->tribute->id],
             ['package_theme_id' => $package_theme_id]
         );
+
+        $this->checkPreferenceStates();
     }
     // End: Package Theme
 

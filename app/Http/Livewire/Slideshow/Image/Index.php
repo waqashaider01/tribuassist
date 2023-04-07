@@ -8,12 +8,15 @@ use Livewire\Component;
 class Index extends Component
 {
     public $tribute;
+    public $media_editable = true;
 
     protected $listeners = ['refreshImageComponent' => '$refresh'];
 
     public function mount($tribute)
     {
         $this->tribute = $tribute;
+
+        if ($tribute->status > 1) $this->media_editable = false;
     }
 
     public function render()

@@ -22,16 +22,8 @@ class Show extends Component
 
     public function processOrder()
     {
-        try {
-            DB::beginTransaction();
-            Order::create([
-                'tribute_id' => $this->tribute->id
-            ]);
-            DB::commit();
-        } catch (Exception $exception) {
-            DB::rollBack();
-            dd($exception->getMessage());
-        }
+        $this->tribute->status = 2;
+        $this->tribute->save();
     }
 
     public function downloadTxt()
@@ -113,7 +105,7 @@ class Show extends Component
                 $zip->addFile(public_path('storage/' . $image->path), $fileName . '.' . $imageExtension);
 
                 // TXT file
-                if($image->comment){
+                if ($image->comment) {
                     $txtPath = 'temporary-files/' . $tribute->id . '/' . $fileName . '.txt';
                     $tempTxtFiles[] = $txtPath;
                     Storage::put($txtPath, $image->comment);
@@ -152,7 +144,7 @@ class Show extends Component
 
     public function markAsCompleted()
     {
-        $this->tribute->status = 2;
+        $this->tribute->status = 3;
         $this->tribute->save();
     }
 

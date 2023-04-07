@@ -12,12 +12,14 @@ class Create extends Component
     use WithFileUploads;
 
     public $tribute;
+    public $editable;
 
     public $images = [];
 
-    public function mount($tribute)
+    public function mount($tribute, $editable = true)
     {
         $this->tribute = $tribute;
+        $this->editable = $editable;
     }
 
     public function uploadImage()

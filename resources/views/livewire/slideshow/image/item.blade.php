@@ -8,14 +8,14 @@
                     d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
                     clip-rule="evenodd" />
             </svg>
-            <span>Thumb</span>
+            <span class="hidden md:block">Thumb</span>
         </div>
         @endif
 
         <div class="flex justify-between items-center gap-4">
             @if($serializable)
-            <input wire:model.lazy="serial_number" type="text"
-                class="flex justify-center items-center gap-1 h-8 w-12 rounded-xl overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer"
+            <input wire:model.lazy="serial_number" {{!$editable ? 'disabled' : '' }} type="text"
+                class="flex justify-center items-center gap-1 h-8 w-12 rounded-xl overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer {{!$editable ? 'opacity-50 cursor-not-allowed' : 'opacity-100' }}"
                 min="1">
             @else
             <label for="thumbnail"
@@ -28,8 +28,8 @@
             </label>
             @endif
 
-            <a href="{{route('slideshow.image.edit', $image->id)}}"
-                class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer">
+            <a href="{{$editable ? route('slideshow.image.edit', $image->id) : '#'}}"
+                class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer {{!$editable ? 'opacity-50 cursor-not-allowed' : 'opacity-100' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -38,8 +38,8 @@
             </a>
 
             @if($serializable)
-            <button wire:click="delete"
-                class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer">
+            <button wire:click="delete" {{!$editable ? 'disabled' : '' }}
+                class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer {{!$editable ? 'opacity-50 cursor-not-allowed' : 'opacity-100' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -50,12 +50,13 @@
         </div>
     </div>
 
-    <a href="{{route('slideshow.image.edit', $image->id)}}">
+    <a href="{{$editable ? route('slideshow.image.edit', $image->id) : '#'}}">
         <img class="w-full aspect-square rounded-xl overflow-hidden" src="{{asset('storage/'.$image->path)}}">
     </a>
 
     <div class="mt-3">
-        <input wire:model.lazy="comment" type="text" id="large-input" placeholder="Comment"
+        <input wire:model.lazy="comment" {{!$editable ? 'disabled' : '' }} type="text" id="large-input"
+            placeholder="Comment"
             class="block p-4 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 text-center">
     </div>
 </div>

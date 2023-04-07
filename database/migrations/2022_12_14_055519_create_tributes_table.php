@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tributes', function (Blueprint $table) {
             $table->id();
             $table->boolean('status')->default(false);
+            $table->integer('order_number')->default(0);
             $table->string('record_id');
             $table->string('first_name');
             $table->string('last_name')->nullable();

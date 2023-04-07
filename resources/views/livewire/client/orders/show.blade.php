@@ -31,7 +31,7 @@
             <td>
                 <div class="flex items-center gap-2">
 
-                    {{-- @if($tribute->status == 1)
+                    @if($tribute->status == 1)
                     <button wire:click="processOrder"
                         class="flex items-center gap-2 text-white bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -42,7 +42,7 @@
 
                         Process Order
                     </button>
-                    @endif --}}
+                    @endif
 
                     @if($tribute->status != 0)
                     <button wire:click="downloadTxt" title="Download .txt file"
@@ -66,7 +66,7 @@
                     </button>
                     @endif
 
-                    @if($tribute->status == 1)
+                    @if($tribute->status == 2)
                     <button wire:click="markAsCompleted"
                         class="flex items-center gap-2 text-white bg-blue-900 focus:bg-blue-900 focus:text-white focus:ring-4 focus:outline-none rounded-lg p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
