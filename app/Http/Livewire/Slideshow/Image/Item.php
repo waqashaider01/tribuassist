@@ -12,34 +12,86 @@ class Item extends Component
 
     public $image;
     public $serializable;
-    public $serial_number;
+    // public $serial_number;
     public $comment;
 
-    protected $listeners = ['refreshImageItems' => '$refresh'];
+    protected $listeners = ['refreshImageItems' => '$refresh', 'reorder'];
 
     public function mount($image, $serializable = true, $editable = true)
     {
         $this->image = $image;
         $this->serializable = $serializable;
         $this->editable = $editable;
-        $this->serial_number = $image->serial_number;
+        // $this->serial_number = $image->serial_number;
         $this->comment = $image->comment;
     }
 
-    public function updatedSerialNumber()
+    // public function updatedSerialNumber()
+    // {
+    //     $imagesCount = SlideshowImage::where('tribute_id', $this->image->tribute_id)->count();
+
+    //     if ($this->serial_number <= $imagesCount) {
+
+    //         if ($this->serial_number > $this->image->serial_number) {
+    //             $images = SlideshowImage::where([
+    //                 'tribute_id' => $this->image->tribute_id,
+    //                 'is_thumbnail' => false,
+    //             ])
+    //                 ->whereNot('id', $this->image->id)
+    //                 ->where('serial_number', '<=', $this->serial_number)
+    //                 ->select('id', 'tribute_id', 'serial_number', 'path')
+    //                 ->get();
+
+    //             foreach ($images as $image) {
+    //                 $serial_number = $image->serial_number - 1;
+    //                 $image->serial_number = $serial_number;
+    //                 $image->save();
+    //             }
+    //         } else {
+    //             $images = SlideshowImage::where([
+    //                 'tribute_id' => $this->image->tribute_id,
+    //                 'is_thumbnail' => false,
+    //             ])
+    //                 ->where('serial_number', '<', $this->image->serial_number)
+    //                 ->select('id', 'tribute_id', 'serial_number', 'path')
+    //                 ->get();
+
+    //             foreach ($images as $image) {
+    //                 $serial_number = $image->serial_number + 1;
+    //                 $image->serial_number = $serial_number;
+    //                 $image->save();
+    //             }
+    //         }
+
+    //         $this->image->serial_number = $this->serial_number;
+    //         $this->image->save();
+    //     }
+
+    //     // return redirect()->route('slideshow.edit');
+
+    //     $this->emit('refreshImageComponent');
+    // }
+
+    public function reorder(int $id, int $newPosition)
     {
+        $newPosition = $newPosition ? $newPosition + 1 : 1;
+
+        $sortableImage = SlideshowImage::find($id);
         $imagesCount = SlideshowImage::where('tribute_id', $this->image->tribute_id)->count();
 
-        if ($this->serial_number <= $imagesCount) {
+        if ($newPosition != $sortableImage->serial_number && $newPosition <= $imagesCount) {
 
-            if ($this->serial_number > $this->image->serial_number) {
+            $updatePosition = false;
+
+            if ($newPosition > $sortableImage->serial_number) {
                 $images = SlideshowImage::where([
                     'tribute_id' => $this->image->tribute_id,
                     'is_thumbnail' => false,
                 ])
-                    ->whereNot('id', $this->image->id)
-                    ->where('serial_number', '<=', $this->serial_number)
-                    ->select('id', 'tribute_id', 'serial_number', 'path')
+                    ->select('id', 'serial_number', 'tribute_id', 'is_thumbnail')
+                    ->whereNotIn('id', [$id])
+                    ->where('serial_number', '>', $sortableImage->serial_number)
+                    ->where('serial_number', '<=', $newPosition)
                     ->get();
 
                 foreach ($images as $image) {
@@ -47,13 +99,17 @@ class Item extends Component
                     $image->serial_number = $serial_number;
                     $image->save();
                 }
-            } else {
+
+                $updatePosition = true;
+            } elseif ($newPosition < $sortableImage->serial_number) {
                 $images = SlideshowImage::where([
                     'tribute_id' => $this->image->tribute_id,
                     'is_thumbnail' => false,
                 ])
-                    ->where('serial_number', '<', $this->image->serial_number)
-                    ->select('id', 'tribute_id', 'serial_number', 'path')
+                    ->select('id', 'serial_number', 'tribute_id', 'is_thumbnail')
+                    ->whereNotIn('id', [$id])
+                    ->where('serial_number', '<', $sortableImage->serial_number)
+                    ->where('serial_number', '>=', $newPosition)
                     ->get();
 
                 foreach ($images as $image) {
@@ -61,15 +117,17 @@ class Item extends Component
                     $image->serial_number = $serial_number;
                     $image->save();
                 }
+
+                $updatePosition = true;
             }
 
-            $this->image->serial_number = $this->serial_number;
-            $this->image->save();
+            if ($updatePosition) {
+                $sortableImage->serial_number = $newPosition;
+                $sortableImage->save();
+            }
         }
 
-        // return redirect()->route('slideshow.edit');
-
-        $this->emit('refreshImageComponent');
+        $this->emitSelf('refreshImageComponent');
     }
 
     public function updatedComment()

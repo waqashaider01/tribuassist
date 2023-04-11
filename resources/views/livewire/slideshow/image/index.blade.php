@@ -1,7 +1,5 @@
 <div class="space-y-12">
-    <div class="grid md:grid-cols-2 gap-4 md:gap-12">
-        @livewire('slideshow.image.thumbnail', ['tribute' => $tribute, 'editable' => $media_editable])
-
+    <div class="">
         @if($appConfig->tribute_media_limit - $tribute->images->count())
         @livewire('slideshow.image.create', ['tribute' => $tribute, 'editable' => $media_editable])
         @else
@@ -9,16 +7,22 @@
         @endif
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        @if($thumbnail)
-        @livewire('slideshow.image.item', ['image' => $thumbnail, 'serializable' => false, 'editable' =>
-        $media_editable], key('image-' .
-        $thumbnail->id))
-        @endif
-
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" wire:sortable="reorder" id="sortable-list">
         @foreach ($images as $image)
         @livewire('slideshow.image.item', ['image' => $image, 'editable' => $media_editable], key('image-' .
         $image->id))
         @endforeach
     </div>
 </div>
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+<script>
+    Sortable.create(document.getElementById('sortable-list'), {
+        onEnd: function(event) {
+            var id = event.clone.attributes[1].value;
+            Livewire.emit('reorder', id, event.newIndex, event.oldIndex);
+        }
+    });
+</script>
+@endpush

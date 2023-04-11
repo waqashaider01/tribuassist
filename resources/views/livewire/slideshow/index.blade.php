@@ -51,6 +51,7 @@
             </div>
 
             @livewire('slideshow.preferences', ['tribute' => $tribute])
+            @livewire('slideshow.thumbnail-management', ['tribute' => $tribute])
             @livewire('slideshow.media-management', ['tribute' => $tribute])
 
             <div class="flex items-center gap-3">

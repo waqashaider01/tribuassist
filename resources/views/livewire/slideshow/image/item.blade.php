@@ -1,4 +1,6 @@
-<div class="rounded-xl overflow-hidden border {{$is_thumbnail ? 'border-2 border-green-600' : ''}} p-4">
+<div @if($serializable) wire:key="{{ $image->id }}" wire:sortable.item="{{ $image->id }}" wire:sortable.handle
+    style="cursor: move;" @endif
+    class="rounded-xl overflow-hidden border {{$is_thumbnail ? 'border-2 border-green-600' : ''}} p-4">
     <div class="flex justify-between items-center mb-6">
 
         @if(!$serializable)
@@ -13,11 +15,7 @@
         @endif
 
         <div class="flex justify-between items-center gap-4">
-            @if($serializable)
-            <input wire:model.lazy="serial_number" {{!$editable ? 'disabled' : '' }} type="text"
-                class="flex justify-center items-center gap-1 h-8 w-12 rounded-xl overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer {{!$editable ? 'opacity-50 cursor-not-allowed' : 'opacity-100' }}"
-                min="1">
-            @else
+            @if(!$serializable)
             <label for="thumbnail"
                 class="flex justify-center items-center gap-1 h-8 w-8 rounded-full overflow-hidden bg-stone-100 ring-2 ring-stone-100 ring-offset-2 transition duration-300 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -50,9 +48,7 @@
         </div>
     </div>
 
-    <a href="{{$editable ? route('slideshow.image.edit', $image->id) : '#'}}">
-        <img class="w-full aspect-square rounded-xl overflow-hidden" src="{{asset('storage/'.$image->path)}}">
-    </a>
+    <img class="w-full aspect-square rounded-xl overflow-hidden" src="{{asset('storage/'.$image->path)}}">
 
     <div class="mt-3">
         <input wire:model.lazy="comment" {{!$editable ? 'disabled' : '' }} type="text" id="large-input"
