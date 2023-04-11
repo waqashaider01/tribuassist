@@ -56,7 +56,8 @@ class Create extends Component
         }
 
         $this->images = [];
-        $this->emitUp('refreshImageComponent');
+
+        return redirect(url('/slideshow/edit'));
     }
 
     public function render()

@@ -159,7 +159,7 @@ class Item extends Component
         // Delete database record
         $this->image->delete();
 
-        $this->emit('refreshImageComponent');
+        return redirect(url('/slideshow/edit'));
 
         return back();
     }

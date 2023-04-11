@@ -48,7 +48,8 @@
         </div>
     </div>
 
-    <img class="w-full aspect-square rounded-xl overflow-hidden" src="{{asset('storage/'.$image->path)}}">
+    <div class="h-32 md:h-52 w-full rounded-xl overflow-hidden bg-contain bg-no-repeat bg-center"
+        style="background-image: url('{{asset('storage/'.$image->path)}}')"></div>
 
     <div class="mt-3">
         <input wire:model.lazy="comment" {{!$editable ? 'disabled' : '' }} type="text" id="large-input"
