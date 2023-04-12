@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    public $can_logout = true;
     public $is_editable = false;
     public $is_submitable = false;
 
@@ -25,6 +26,7 @@ class Index extends Component
             if (auth()->check() && auth()->user()->role == 2) {
                 $this->tribute = Tribute::findOrFail($request->tribute_id);
                 $this->funeralHome = $this->tribute->funeralHome;
+                $this->can_logout = false;
 
                 if ($this->funeralHome->user_id == auth()->id()) {
                     $this->is_editable = true;
@@ -32,7 +34,7 @@ class Index extends Component
                     return redirect('/');
                 }
             } else {
-                return redirect('/');
+                return redirect('/login');
             }
         } else {
             $this->getTributeData();
@@ -45,13 +47,13 @@ class Index extends Component
 
         if ($this->tribute_id) {
             $tribute_id = $this->tribute_id;
-        } elseif (session('_tati_')) {
+        } elseif (session()->has('_tati_')) {
             $tribute_id = session('_tati_');
         }
 
         if ($tribute_id) {
             $this->tribute = Tribute::where('record_id', $tribute_id)->first();
-            $this->funeralHome = $this->tribute->funeralHome;
+            $this->funeralHome = $this->tribute?->funeralHome;
         }
     }
 
@@ -59,10 +61,18 @@ class Index extends Component
     {
         $this->getTributeData();
 
-        if (Hash::check(strtoupper($this->password), $this->tribute->password)) {
+        if ($this->tribute && Hash::check(strtoupper($this->password), $this->tribute->password)) {
             session()->put('_tati_', $this->tribute_id);
-        }
 
+            return redirect(request()->fingerprint['path']);
+        } else {
+            return back()->with('warning', 'Credentials not matched!');
+        }
+    }
+
+    public function logout()
+    {
+        session()->forget('_tati_');
         return back();
     }
 

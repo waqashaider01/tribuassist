@@ -6,6 +6,7 @@ use App\Models\SlideshowImage;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\Facades\Image;
 
 class Thumbnail extends Component
 {
@@ -24,8 +25,11 @@ class Thumbnail extends Component
     public function uploadThumbnail()
     {
         $this->validate([
-            'thumbnail' => 'image',
+            // 'thumbnail' => 'required|image|mimes:png,jpg,jpeg|dimensions:ratio=9/16',
+            'thumbnail' => 'required|image|mimes:png,jpg,jpeg',
         ]);
+
+        if (!$this->isPortrait()) return back()->with('warning', 'Portrait thumbnail required.');
 
         // Deleting old image
         $oldImage = SlideshowImage::where([
@@ -56,7 +60,21 @@ class Thumbnail extends Component
             ]);
         }
 
-        $this->emitUp('refreshImageComponent');
+        return redirect(request()->fingerprint['path']);
+    }
+
+    public function isPortrait()
+    {
+        // Use Intervention Image to open the file and get its width and height
+        $img = Image::make($this->thumbnail);
+        $width = $img->width();
+        $height = $img->height();
+
+        $aspectRatio = $width / $height;
+
+        if ($aspectRatio < 1) {
+            return true;
+        }
     }
 
     public function render()

@@ -3,7 +3,7 @@
         @if($appConfig->tribute_media_limit - $tribute->images->count())
         @livewire('slideshow.image.create', ['tribute' => $tribute, 'editable' => $media_editable])
         @else
-        <div class="">Media limit exceeded</div>
+        <div class="">Media limit reached</div>
         @endif
     </div>
 

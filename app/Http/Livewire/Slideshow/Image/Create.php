@@ -57,7 +57,7 @@ class Create extends Component
 
         $this->images = [];
 
-        return redirect(url('/slideshow/edit'));
+        return redirect(request()->fingerprint['path']);
     }
 
     public function render()
