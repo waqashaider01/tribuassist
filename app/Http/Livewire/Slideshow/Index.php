@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Slideshow;
 
+use App\Models\Configuration;
 use App\Models\SlideshowPreference;
 use App\Models\Tribute;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    public $appConfig;
+
     public $can_logout = true;
     public $is_editable = false;
     public $is_submitable = false;
@@ -22,6 +25,8 @@ class Index extends Component
 
     public function mount(Request $request)
     {
+        $this->appConfig = Configuration::latest()->first();
+
         if ($request->tribute_id) {
             if (auth()->check() && auth()->user()->role == 2) {
                 $this->tribute = Tribute::findOrFail($request->tribute_id);
