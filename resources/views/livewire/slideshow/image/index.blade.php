@@ -16,13 +16,47 @@
 </div>
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
 <script>
     Sortable.create(document.getElementById('sortable-list'), {
         onEnd: function(event) {
             var id = event.clone.attributes[1].value;
             Livewire.emit('reorder', id, event.newIndex, event.oldIndex);
+        }  
+    });
+
+    
+</script>  -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+<script>
+    var scrolling = false;
+    var delay = 3000; // set delay time in milliseconds
+    var timeoutId;
+
+    Sortable.create(document.getElementById('sortable-list'), {
+        onStart: function () {
+            if (isTouchDevice()) {
+                scrolling = false;
+                timeoutId = setTimeout(function () {
+                    scrolling = true;
+                }, delay);
+            }
+        },
+        onEnd: function(event) {
+            clearTimeout(timeoutId);
+            if (!scrolling) {
+                var id = event.clone.attributes[1].value;
+                Livewire.emit('reorder', id, event.newIndex, event.oldIndex);
+            }
         }
     });
+
+    function isTouchDevice() {
+        return 'ontouchstart' in window || navigator.maxTouchPoints;
+    }
 </script>
+
+
+
 @endpush

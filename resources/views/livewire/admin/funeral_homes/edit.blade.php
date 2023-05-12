@@ -12,28 +12,28 @@
             </x-slot>
 
             <x-slot name="form">
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="funeral_home_name" value="{{ __('Funeral Home Name') }}" />
                     <x-jet-input id="funeral_home_name" type="text" class="mt-1 block w-full"
                         wire:model.defer="funeral_home_name" autocomplete="funeral_home_name" required />
                     <x-jet-input-error for="funeral_home_name" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="website" value="{{ __('Website') }}" />
                     <x-jet-input id="website" type="text" class="mt-1 block w-full" wire:model.defer="website"
                         autocomplete="website" required />
                     <x-jet-input-error for="website" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
                     <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="email"
                         autocomplete="email" required />
                     <x-jet-input-error for="email" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="notification_email" value="{{ __('Notification Email') }}" />
                     <x-jet-input id="notification_email" type="email" class="mt-1 block w-full"
                         wire:model.defer="notification_email" autocomplete="notification_email" required />
@@ -47,21 +47,21 @@
                     <x-jet-input-error for="street" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="phone" value="{{ __('Phone') }}" />
                     <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="phone"
                         autocomplete="phone" required />
                     <x-jet-input-error for="phone" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="zip" value="{{ __('ZIP') }}" />
                     <x-jet-input id="zip" type="text" class="mt-1 block w-full" wire:model.defer="zip"
                         autocomplete="zip" required />
                     <x-jet-input-error for="zip" class="mt-2" />
                 </div>
 
-                <div wire:ignore class="col-span-3">
+                <div wire:ignore class="col-span-6 sm:col-span-3">
                     <x-jet-label for="state" value="{{ __('State') }}" />
                     <select id="state" class="mt-1 block w-full" wire:model.defer="state_id" required>
                         <option value="">{{__('Select State')}}</option>
@@ -72,7 +72,7 @@
                     <x-jet-input-error for="state_id" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="city" value="{{ __('City') }}" />
                     <select id="city"
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
