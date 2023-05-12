@@ -2,7 +2,7 @@
 <div class="px-4 py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="space-y-8">
-            <div class="grid grid-cols-3 bg-white rounded-xl overflow-hidden p-6">
+            <div class="grid grid-cols-3 bg-white rounded-xl   p-4">
                 <div class="col-span-2">
                     <div class="flex items-center gap-2 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -22,9 +22,9 @@
                 </div>
 
                 @if($can_logout)
-                <div class="flex md:justify-end items-center">
+                <div class="flex md:justify-center items-center">
                     <button wire:click="logout"
-                        class="w-fit flex justify-center items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 font-semibold rounded-lg duration-300">
+                        class="w-fit flex justify-center items-center   bg-green-600 hover:bg-green-700 text-white px-1 sm:px-4  py-3 font-semibold rounded-lg duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -36,7 +36,7 @@
                 @endif
             </div>
 
-            <div class="bg-white rounded-xl overflow-hidden p-6">
+            <div class="bg-white rounded-xl overflow-hidden p-1 sm:p-6">
                 <div class="flex items-center gap-2 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">

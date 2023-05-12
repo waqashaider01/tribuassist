@@ -1,6 +1,6 @@
 <div @if($serializable) wire:key="{{ $image->id }}" wire:sortable.item="{{ $image->id }}" wire:sortable.handle
     style="cursor: move;" @endif
-    class="rounded-xl overflow-hidden border {{$is_thumbnail ? 'border-2 border-green-600' : ''}} p-4">
+    class="rounded-xl  border {{$is_thumbnail ? 'border-2 border-green-600' : ''}} p-4   ">
     <div class="flex justify-between items-center mb-6">
 
         @if(!$serializable)

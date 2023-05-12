@@ -7,7 +7,7 @@
         @endif
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" wire:sortable="reorder" id="sortable-list">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4" wire:sortable="reorder" id="sortable-list">
         @foreach ($images as $image)
         @livewire('slideshow.image.item', ['image' => $image, 'editable' => $media_editable], key('image-' .
         $image->id))

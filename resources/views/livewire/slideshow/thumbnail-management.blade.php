@@ -5,7 +5,7 @@
 
     <div class="p-2 md:p-8">
         <div class="space-y-12">
-            <div class="grid md:grid-cols-3 gap-4">
+            <div class=" sm:grid md:grid-cols-3 gap-4">
                 @livewire('slideshow.image.item', ['image' => $thumbnail, 'serializable' => false, 'editable' =>
                 $media_editable], key('image-' .
                 $thumbnail->id))

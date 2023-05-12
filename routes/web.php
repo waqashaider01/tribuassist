@@ -64,7 +64,5 @@ Route::get(
         return "The command " . $command . " has been successfully executed.";
     }
 );
-
-
 require __DIR__ . '/admin.php';
 require __DIR__ . '/client.php';
