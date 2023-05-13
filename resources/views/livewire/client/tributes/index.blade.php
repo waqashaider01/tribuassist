@@ -1,6 +1,6 @@
 @section('page_name', 'Tributes')
 
-<div class="min-h-[79vh] p-6 flex flex-col gap-6">
+<div class="min-h-[79vh] p-2 sm:p-6 flex flex-col gap-6">
     <div class="flex items-end gap-2">
         <a href="{{route('tributes.create')}}"
             class="flex items-center gap-2 h-12 w-fit px-4 border border-blue-900 rounded-xl bg-white text-blue-900">

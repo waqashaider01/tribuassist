@@ -13,26 +13,26 @@
 
             <x-slot name="form">
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="first_name" value="{{ __('First Name') }}" />
                     <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="first_name"
                         autocomplete="first_name" required />
                     <x-jet-input-error for="first_name" class="mt-2" />
                 </div>
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="last_name" value="{{ __('Last Name') }}" />
                     <x-jet-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="last_name"
                         autocomplete="last_name" required />
                     <x-jet-input-error for="last_name" class="mt-2" />
                 </div>
 
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
                     <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="email"
                         autocomplete="email" required />
                     <x-jet-input-error for="email" class="mt-2" />
                 </div>
-                <div class="col-span-3">
+                <div class="col-span-6 sm:col-span-3">
                     <x-jet-label for="phone" value="{{ __('Phone') }}" />
                     <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="phone"
                         autocomplete="phone" required />

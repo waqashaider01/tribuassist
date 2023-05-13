@@ -1,7 +1,7 @@
 @section('page_name', 'Tribute: Details')
 
-<div class="bg-white p-8">
-    <table class="w-full border">
+<div class="bg-white p-2 sm:p-8  table-responsive">
+    <table class="w-full border table-responsive">
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Record ID</th>
             <td>{{$tribute->record_id}}</td>

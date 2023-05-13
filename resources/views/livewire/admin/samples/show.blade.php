@@ -1,7 +1,7 @@
 @section('page_name', 'Sample Details')
 
-<div class="bg-white p-8 space-y-8">
-    <table class="w-full border">
+<div class="bg-white sm:p-8 space-y-8">
+    <table class="w-full border table-responsive">
         <tr class="odd:bg-white even:bg-stone-100 divide-x divide-stone-100">
             <th>Title</th>
             <td>{{$sample->title}}</td>

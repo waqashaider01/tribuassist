@@ -47,10 +47,10 @@ body {
     @apply bg-stone-100 border-y-2 border-stone-300;
 }
 th {
-    @apply px-6 py-4 text-stone-600 text-left text-sm font-normal tracking-wider;
+    @apply px-1 py-4 text-stone-600 text-left text-sm font-normal tracking-wider;
 }
 td {
-    @apply px-6 py-4 text-stone-600 font-normal whitespace-nowrap;
+    @apply  px-1 py-4 text-stone-600 font-normal whitespace-nowrap;
 }
 
 /* Form */
@@ -152,4 +152,12 @@ td {
 
 .subscription-preset-button-active {
     @apply border-transparent text-white bg-blue-900;
+}
+@media only screen and (max-width: 1000px) and (min-width: 768px)  {
+
+
+.sidebar{
+    width: 34% !important;
+}
+
 }

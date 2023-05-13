@@ -6,7 +6,7 @@
         </a>
     </div>
 
-    <nav class="h-full overflow-y-auto space-y-3 py-8 px-8">
+    <nav class="h-full overflow-y-auto overflow-y-auto space-y-4 py-8 px-8 ">
         <a href="{{route('welcome')}}" class="{{isActiveRoute('welcome') ? 'sidebar-link-active' : 'sidebar-link' }}">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
